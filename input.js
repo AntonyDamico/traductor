@@ -1,5 +1,9 @@
-for (var i = 1; i < 101; i++) {
-    if (i % 15 == 0 && 2 < 3) {
-        write("FizzBuzz");
-    }
+
+if(2 % 2 == 0) {
+    write('good');
+} else {
+    write('not');
 }
+
+
+// TODO: NOT, else, grupos de booleans, funciones

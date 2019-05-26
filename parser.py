@@ -146,10 +146,13 @@ def p_relational_expressions(p):
 
 def p_rel_group(p):
     '''relexprgroup : relexpr AND relexprgroup
+                    | relexpr OR relexprgroup
                     | relexpr 
     '''
     if(len(p) > 3):
         p[0] = ('RELOPS', p[2], p[1], p[3])
+    elif(len(p) > 2):
+        p[0] = ('NOT', p[2])
     else:
         p[0] = p[1]
 
