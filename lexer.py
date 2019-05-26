@@ -1,5 +1,6 @@
 import ply.lex as lex
 import sys
+import re
 
 # Palabras Reservadas
 reserved = (
@@ -39,7 +40,7 @@ tokens = (
     'NOTASSIG',
     'ANLOGIC',
     'ORLOGIC',
-    'NOTCLA',
+    'NOT',
     'QUOTE'
 ) + tuple(map(lambda s: s.upper(), reserved))
 
@@ -62,7 +63,7 @@ t_GREATER = r'>'
 # Logic Operators
 t_ANLOGIC = r'&&'
 t_ORLOGIC = r'\|\|'
-t_NOTCLA = r'\!'
+t_NOT = r'\!'
 
 t_END_LINE = r';'
 t_ASSIGN = r'='
@@ -108,7 +109,7 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-lex.lex()
+lex.lex(reflags=re.UNICODE)
 
 # MAIN 
 if __name__ == "__main__":
