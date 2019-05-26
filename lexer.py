@@ -77,3 +77,30 @@ t_STRINGS = r'\"([^\\\n]|(\\(.|\n)))*?\"'
 t_ignore = ' \t\v'
 # Ignoring multiline comments
 t_ignore_COMMENT = r'/\*(.|\n)*?\*/'
+
+def t_NUMBER(t):
+    r'\d+\.?(\d+)?'
+    if eval(t.value) <= 32767 and '.' not in t.value:
+        t.value = eval(t.value)
+        return t
+    else:
+        print ("Lexical: illegal character '%s' in line '%d' position" % (t.value, t.lineno))
+        t.lexer.skip(1)
+ 
+def t_ID(t):
+    r'[a-zA-z_]\w*'
+    if t.value in reserved:
+        t.type = t.value.upper()
+    return t
+ 
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+ 
+def t_comment(t):
+    r'\//.*'
+    pass
+
+def t_error(t):
+    print ("Lexical: illegal character '%s' in line '%d' position" % (t.value[0], t.lineno))
+    t.lexer.skip(1)
