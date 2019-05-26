@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftORLOGICleftANDLOGICleftASSIGNNEleftGELELTGTleftPLUSMINUSleftTIMESDIVIDEMODrightNOTANDLOGIC ASSIGN COMMA DIVIDE END_LINE EQUALS FOR FUNCTION GE GT ID IF LBRACKET LE LPAREN LT MINUS MOD NE NOT NUMBER ORLOGIC PLUS PROMPT QUOTE RBRACKET RETURN RPAREN STRINGS TIMES VAR WHILE WRITES : statement S\n         | statement END_LINE SS : statement END_LINE\n                 | command\n                 | command END_LINEstatement : declarationsstatement : exprdeclarations : VAR ID ASSIGN expr\n                    | VAR ID ASSIGN relexpr\n                    | VAR IDcommand : WRITE LPAREN expr RPARENcommand : WHILE LPAREN expr RPAREN LBRACKET S RBRACKET\n               | WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET command : FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET\n    expr : expr PLUS expr\n            | expr MINUS expr\n            | expr TIMES expr\n            | expr DIVIDE expr\n            | expr MOD exprexpr : ID ASSIGN exprexpr : NUMBERexpr : STRINGSexpr : IDexpr : LPAREN expr RPARENrelexpr : expr LT expr\n               | expr LE expr\n               | expr GT expr\n               | expr GE expr\n               | expr EQUALS expr\n               | expr NE expr'
+_lr_signature = 'leftORleftANDleftASSIGNNEleftGELELTGTleftPLUSMINUSleftTIMESDIVIDEMODrightNOTleftINCREMENTDECREMENTAND ASSIGN COMMA DECREMENT DIVIDE END_LINE EQUALS FOR FUNCTION GE GT ID IF INCREMENT LBRACKET LE LPAREN LT MINUS MOD NE NOT NUMBER OR PLUS PROMPT QUOTE RBRACKET RETURN RPAREN STRINGS TIMES VAR WHILE WRITES : statement S\n         | statement END_LINE SS : statement END_LINE\n                 | command\n                 | command END_LINEstatement : declarationsstatement : exprdeclarations : VAR ID ASSIGN expr\n                    | VAR ID ASSIGN relexpr\n                    | VAR IDcommand : WRITE LPAREN expr RPARENcommand : WHILE LPAREN expr RPAREN LBRACKET S RBRACKET\n               | WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET command : FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET\n    expr : expr PLUS expr\n            | expr MINUS expr\n            | expr TIMES expr\n            | expr DIVIDE expr\n            | expr MOD exprexpr : expr INCREMENT\n            | expr DECREMENTexpr : ID ASSIGN exprexpr : NUMBERexpr : STRINGSexpr : IDexpr : LPAREN expr RPARENrelexpr : expr LT expr\n               | expr LE expr\n               | expr GT expr\n               | expr GE expr\n               | expr EQUALS expr\n               | expr NE exprrelexpr : expr AND relexpr\n               | expr AND expr\n    '
     
-_lr_action_items = {'NUMBER':([0,1,3,4,8,10,11,12,14,16,18,20,21,22,23,24,25,26,33,34,35,36,37,38,39,40,42,43,45,46,47,48,49,51,52,53,54,55,56,57,58,59,60,65,70,],[1,-21,-22,1,1,-23,-7,-6,1,1,1,-10,1,1,1,1,1,1,-24,1,-20,-18,-17,-15,-16,-19,1,1,1,1,1,1,1,-9,-8,1,-29,-26,1,-25,-27,-28,-30,1,1,]),'LBRACKET':([41,44,69,],[53,56,70,]),'WHILE':([0,1,3,4,10,11,12,16,20,33,35,36,37,38,39,40,51,52,53,54,55,56,57,58,59,60,70,],[2,-21,-22,2,-23,-7,-6,2,-10,-24,-20,-18,-17,-15,-16,-19,-9,-8,2,-29,-26,2,-25,-27,-28,-30,2,]),'MINUS':([1,3,10,11,19,29,32,33,35,36,37,38,39,40,52,54,55,57,58,59,60,62,68,],[-21,-22,-23,25,25,25,25,-24,25,-18,-17,-15,-16,-19,25,25,25,25,25,25,25,25,25,]),'LE':([1,3,10,29,33,35,36,37,38,39,40,52,62,],[-21,-22,-23,43,-24,-20,-18,-17,-15,-16,-19,43,43,]),'RPAREN':([1,3,10,19,28,29,32,33,35,36,37,38,39,40,54,55,57,58,59,60,68,],[-21,-22,-23,33,41,44,50,-24,-20,-18,-17,-15,-16,-19,-29,-26,-25,-27,-28,-30,69,]),'NE':([1,3,10,29,33,35,36,37,38,39,40,52,62,],[-21,-22,-23,48,-24,-20,-18,-17,-15,-16,-19,48,48,]),'STRINGS':([0,1,3,4,8,10,11,12,14,16,18,20,21,22,23,24,25,26,33,34,35,36,37,38,39,40,42,43,45,46,47,48,49,51,52,53,54,55,56,57,58,59,60,65,70,],[3,-21,-22,3,3,-23,-7,-6,3,3,3,-10,3,3,3,3,3,3,-24,3,-20,-18,-17,-15,-16,-19,3,3,3,3,3,3,3,-9,-8,3,-29,-26,3,-25,-27,-28,-30,3,3,]),'LT':([1,3,10,29,33,35,36,37,38,39,40,52,62,],[-21,-22,-23,45,-24,-20,-18,-17,-15,-16,-19,45,45,]),'PLUS':([1,3,10,11,19,29,32,33,35,36,37,38,39,40,52,54,55,57,58,59,60,62,68,],[-21,-22,-23,24,24,24,24,-24,24,-18,-17,-15,-16,-19,24,24,24,24,24,24,24,24,24,]),'ASSIGN':([10,20,],[21,34,]),'$end':([7,13,15,16,27,30,50,66,67,72,],[0,-4,-1,-3,-5,-2,-11,-13,-12,-14,]),'GT':([1,3,10,29,33,35,36,37,38,39,40,52,62,],[-21,-22,-23,46,-24,-20,-18,-17,-15,-16,-19,46,46,]),'DIVIDE':([1,3,10,11,19,29,32,33,35,36,37,38,39,40,52,54,55,57,58,59,60,62,68,],[-21,-22,-23,22,22,22,22,-24,22,-18,-17,22,22,-19,22,22,22,22,22,22,22,22,22,]),'FOR':([0,1,3,4,10,11,12,16,20,33,35,36,37,38,39,40,51,52,53,54,55,56,57,58,59,60,70,],[5,-21,-22,5,-23,-7,-6,5,-10,-24,-20,-18,-17,-15,-16,-19,-9,-8,5,-29,-26,5,-25,-27,-28,-30,5,]),'EQUALS':([1,3,10,29,33,35,36,37,38,39,40,52,62,],[-21,-22,-23,42,-24,-20,-18,-17,-15,-16,-19,42,42,]),'TIMES':([1,3,10,11,19,29,32,33,35,36,37,38,39,40,52,54,55,57,58,59,60,62,68,],[-21,-22,-23,23,23,23,23,-24,23,-18,-17,23,23,-19,23,23,23,23,23,23,23,23,23,]),'WRITE':([0,1,3,4,10,11,12,16,20,33,35,36,37,38,39,40,51,52,53,54,55,56,57,58,59,60,70,],[6,-21,-22,6,-23,-7,-6,6,-10,-24,-20,-18,-17,-15,-16,-19,-9,-8,6,-29,-26,6,-25,-27,-28,-30,6,]),'GE':([1,3,10,29,33,35,36,37,38,39,40,52,62,],[-21,-22,-23,47,-24,-20,-18,-17,-15,-16,-19,47,47,]),'END_LINE':([1,3,4,10,11,12,13,20,31,33,35,36,37,38,39,40,50,51,52,54,55,57,58,59,60,61,66,67,72,],[-21,-22,16,-23,-7,-6,27,-10,49,-24,-20,-18,-17,-15,-16,-19,-11,-9,-8,-29,-26,-25,-27,-28,-30,65,-13,-12,-14,]),'LPAREN':([0,1,2,3,4,5,6,8,10,11,12,14,16,18,20,21,22,23,24,25,26,33,34,35,36,37,38,39,40,42,43,45,46,47,48,49,51,52,53,54,55,56,57,58,59,60,65,70,],[8,-21,14,-22,8,17,18,8,-23,-7,-6,8,8,8,-10,8,8,8,8,8,8,-24,8,-20,-18,-17,-15,-16,-19,8,8,8,8,8,8,8,-9,-8,8,-29,-26,8,-25,-27,-28,-30,8,8,]),'VAR':([0,1,3,4,10,11,12,16,17,20,33,35,36,37,38,39,40,51,52,53,54,55,56,57,58,59,60,70,],[9,-21,-22,9,-23,-7,-6,9,9,-10,-24,-20,-18,-17,-15,-16,-19,-9,-8,9,-29,-26,9,-25,-27,-28,-30,9,]),'ID':([0,1,3,4,8,9,10,11,12,14,16,18,20,21,22,23,24,25,26,33,34,35,36,37,38,39,40,42,43,45,46,47,48,49,51,52,53,54,55,56,57,58,59,60,65,70,],[10,-21,-22,10,10,20,-23,-7,-6,10,10,10,-10,10,10,10,10,10,10,-24,10,-20,-18,-17,-15,-16,-19,10,10,10,10,10,10,10,-9,-8,10,-29,-26,10,-25,-27,-28,-30,10,10,]),'RBRACKET':([13,15,16,27,30,50,63,64,66,67,71,72,],[-4,-1,-3,-5,-2,-11,66,67,-13,-12,72,-14,]),'MOD':([1,3,10,11,19,29,32,33,35,36,37,38,39,40,52,54,55,57,58,59,60,62,68,],[-21,-22,-23,26,26,26,26,-24,26,-18,-17,26,26,-19,26,26,26,26,26,26,26,26,26,]),}
+_lr_action_items = {'NUMBER':([0,1,3,4,8,10,11,12,14,16,18,20,21,22,23,24,25,26,27,28,35,36,37,38,39,40,41,42,45,46,47,48,49,50,51,52,54,55,56,57,58,59,60,61,62,63,64,65,70,75,],[1,-23,-24,1,1,-25,-7,-6,1,1,1,-10,1,1,1,1,-20,-21,1,1,-26,1,-22,-18,-17,-15,-16,-19,1,1,1,1,1,1,1,1,-9,-8,1,1,-32,-27,-29,-31,-28,-33,-34,-30,1,1,]),'LBRACKET':([43,44,74,],[56,57,75,]),'WHILE':([0,1,3,4,10,11,12,16,20,25,26,35,37,38,39,40,41,42,54,55,56,57,58,59,60,61,62,63,64,65,75,],[2,-23,-24,2,-25,-7,-6,2,-10,-20,-21,-26,-22,-18,-17,-15,-16,-19,-9,-8,2,2,-32,-27,-29,-31,-28,-33,-34,-30,2,]),'MINUS':([1,3,10,11,19,25,26,31,34,35,37,38,39,40,41,42,55,58,59,60,61,62,64,65,67,73,],[-23,-24,-25,27,27,-20,-21,27,27,-26,27,-18,-17,-15,-16,-19,27,27,27,27,27,27,27,27,27,27,]),'LE':([1,3,10,25,26,31,35,37,38,39,40,41,42,55,64,67,],[-23,-24,-25,-20,-21,49,-26,-22,-18,-17,-15,-16,-19,49,49,49,]),'RPAREN':([1,3,10,19,25,26,30,31,34,35,37,38,39,40,41,42,58,59,60,61,62,63,64,65,73,],[-23,-24,-25,35,-20,-21,43,44,53,-26,-22,-18,-17,-15,-16,-19,-32,-27,-29,-31,-28,-33,-34,-30,74,]),'NE':([1,3,10,25,26,31,35,37,38,39,40,41,42,55,64,67,],[-23,-24,-25,-20,-21,45,-26,-22,-18,-17,-15,-16,-19,45,45,45,]),'STRINGS':([0,1,3,4,8,10,11,12,14,16,18,20,21,22,23,24,25,26,27,28,35,36,37,38,39,40,41,42,45,46,47,48,49,50,51,52,54,55,56,57,58,59,60,61,62,63,64,65,70,75,],[3,-23,-24,3,3,-25,-7,-6,3,3,3,-10,3,3,3,3,-20,-21,3,3,-26,3,-22,-18,-17,-15,-16,-19,3,3,3,3,3,3,3,3,-9,-8,3,3,-32,-27,-29,-31,-28,-33,-34,-30,3,3,]),'LT':([1,3,10,25,26,31,35,37,38,39,40,41,42,55,64,67,],[-23,-24,-25,-20,-21,46,-26,-22,-18,-17,-15,-16,-19,46,46,46,]),'PLUS':([1,3,10,11,19,25,26,31,34,35,37,38,39,40,41,42,55,58,59,60,61,62,64,65,67,73,],[-23,-24,-25,24,24,-20,-21,24,24,-26,24,-18,-17,-15,-16,-19,24,24,24,24,24,24,24,24,24,24,]),'INCREMENT':([1,3,10,11,19,25,26,31,34,35,37,38,39,40,41,42,55,58,59,60,61,62,64,65,67,73,],[-23,-24,-25,25,25,-20,-21,25,25,-26,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,]),'ASSIGN':([10,20,],[21,36,]),'$end':([7,13,15,16,29,32,53,71,72,77,],[0,-4,-1,-3,-5,-2,-11,-13,-12,-14,]),'RBRACKET':([13,15,16,29,32,53,68,69,71,72,76,77,],[-4,-1,-3,-5,-2,-11,71,72,-13,-12,77,-14,]),'GT':([1,3,10,25,26,31,35,37,38,39,40,41,42,55,64,67,],[-23,-24,-25,-20,-21,47,-26,-22,-18,-17,-15,-16,-19,47,47,47,]),'DIVIDE':([1,3,10,11,19,25,26,31,34,35,37,38,39,40,41,42,55,58,59,60,61,62,64,65,67,73,],[-23,-24,-25,22,22,-20,-21,22,22,-26,22,-18,-17,22,22,-19,22,22,22,22,22,22,22,22,22,22,]),'FOR':([0,1,3,4,10,11,12,16,20,25,26,35,37,38,39,40,41,42,54,55,56,57,58,59,60,61,62,63,64,65,75,],[5,-23,-24,5,-25,-7,-6,5,-10,-20,-21,-26,-22,-18,-17,-15,-16,-19,-9,-8,5,5,-32,-27,-29,-31,-28,-33,-34,-30,5,]),'EQUALS':([1,3,10,25,26,31,35,37,38,39,40,41,42,55,64,67,],[-23,-24,-25,-20,-21,48,-26,-22,-18,-17,-15,-16,-19,48,48,48,]),'TIMES':([1,3,10,11,19,25,26,31,34,35,37,38,39,40,41,42,55,58,59,60,61,62,64,65,67,73,],[-23,-24,-25,23,23,-20,-21,23,23,-26,23,-18,-17,23,23,-19,23,23,23,23,23,23,23,23,23,23,]),'WRITE':([0,1,3,4,10,11,12,16,20,25,26,35,37,38,39,40,41,42,54,55,56,57,58,59,60,61,62,63,64,65,75,],[6,-23,-24,6,-25,-7,-6,6,-10,-20,-21,-26,-22,-18,-17,-15,-16,-19,-9,-8,6,6,-32,-27,-29,-31,-28,-33,-34,-30,6,]),'GE':([1,3,10,25,26,31,35,37,38,39,40,41,42,55,64,67,],[-23,-24,-25,-20,-21,51,-26,-22,-18,-17,-15,-16,-19,51,51,51,]),'END_LINE':([1,3,4,10,11,12,13,20,25,26,33,35,37,38,39,40,41,42,53,54,55,58,59,60,61,62,63,64,65,66,71,72,77,],[-23,-24,16,-25,-7,-6,29,-10,-20,-21,52,-26,-22,-18,-17,-15,-16,-19,-11,-9,-8,-32,-27,-29,-31,-28,-33,-34,-30,70,-13,-12,-14,]),'LPAREN':([0,1,2,3,4,5,6,8,10,11,12,14,16,18,20,21,22,23,24,25,26,27,28,35,36,37,38,39,40,41,42,45,46,47,48,49,50,51,52,54,55,56,57,58,59,60,61,62,63,64,65,70,75,],[8,-23,14,-24,8,17,18,8,-25,-7,-6,8,8,8,-10,8,8,8,8,-20,-21,8,8,-26,8,-22,-18,-17,-15,-16,-19,8,8,8,8,8,8,8,8,-9,-8,8,8,-32,-27,-29,-31,-28,-33,-34,-30,8,8,]),'VAR':([0,1,3,4,10,11,12,16,17,20,25,26,35,37,38,39,40,41,42,54,55,56,57,58,59,60,61,62,63,64,65,75,],[9,-23,-24,9,-25,-7,-6,9,9,-10,-20,-21,-26,-22,-18,-17,-15,-16,-19,-9,-8,9,9,-32,-27,-29,-31,-28,-33,-34,-30,9,]),'ID':([0,1,3,4,8,9,10,11,12,14,16,18,20,21,22,23,24,25,26,27,28,35,36,37,38,39,40,41,42,45,46,47,48,49,50,51,52,54,55,56,57,58,59,60,61,62,63,64,65,70,75,],[10,-23,-24,10,10,20,-25,-7,-6,10,10,10,-10,10,10,10,10,-20,-21,10,10,-26,10,-22,-18,-17,-15,-16,-19,10,10,10,10,10,10,10,10,-9,-8,10,10,-32,-27,-29,-31,-28,-33,-34,-30,10,10,]),'AND':([1,3,10,25,26,31,35,37,38,39,40,41,42,55,64,67,],[-23,-24,-25,-20,-21,50,-26,-22,-18,-17,-15,-16,-19,50,50,50,]),'DECREMENT':([1,3,10,11,19,25,26,31,34,35,37,38,39,40,41,42,55,58,59,60,61,62,64,65,67,73,],[-23,-24,-25,26,26,-20,-21,26,26,-26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,]),'MOD':([1,3,10,11,19,25,26,31,34,35,37,38,39,40,41,42,55,58,59,60,61,62,64,65,67,73,],[-23,-24,-25,28,28,-20,-21,28,28,-26,28,-18,-17,28,28,-19,28,28,28,28,28,28,28,28,28,28,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'relexpr':([14,34,49,],[28,51,61,]),'expr':([0,4,8,14,16,18,21,22,23,24,25,26,34,42,43,45,46,47,48,49,53,56,65,70,],[11,11,19,29,11,32,35,36,37,38,39,40,52,54,55,57,58,59,60,62,11,11,68,11,]),'declarations':([0,4,16,17,53,56,70,],[12,12,12,31,12,12,12,]),'S':([0,4,16,53,56,70,],[7,15,30,63,64,71,]),'command':([0,4,16,53,56,70,],[13,13,13,13,13,13,]),'statement':([0,4,16,53,56,70,],[4,4,4,4,4,4,]),}
+_lr_goto_items = {'relexpr':([14,36,50,52,],[30,54,63,66,]),'expr':([0,4,8,14,16,18,21,22,23,24,27,28,36,45,46,47,48,49,50,51,52,56,57,70,75,],[11,11,19,31,11,34,37,38,39,40,41,42,55,58,59,60,61,62,64,65,67,11,11,73,11,]),'declarations':([0,4,16,17,56,57,75,],[12,12,12,33,12,12,12,]),'S':([0,4,16,56,57,75,],[7,15,32,68,69,76,]),'command':([0,4,16,56,57,75,],[13,13,13,13,13,13,]),'statement':([0,4,16,56,57,75,],[4,4,4,4,4,4,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,34 +27,38 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> S","S'",1,None,None,None),
-  ('S -> statement S','S',2,'p_rec_statement','parser.py',21),
-  ('S -> statement END_LINE S','S',3,'p_rec_statement','parser.py',22),
-  ('S -> statement END_LINE','S',2,'p_statement','parser.py',30),
-  ('S -> command','S',1,'p_statement','parser.py',31),
-  ('S -> command END_LINE','S',2,'p_statement','parser.py',32),
-  ('statement -> declarations','statement',1,'p_declarations','parser.py',37),
-  ('statement -> expr','statement',1,'p_expr_statement','parser.py',41),
-  ('declarations -> VAR ID ASSIGN expr','declarations',4,'p_variables','parser.py',50),
-  ('declarations -> VAR ID ASSIGN relexpr','declarations',4,'p_variables','parser.py',51),
-  ('declarations -> VAR ID','declarations',2,'p_variables','parser.py',52),
-  ('command -> WRITE LPAREN expr RPAREN','command',4,'p_write','parser.py',64),
-  ('command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET','command',7,'p_command_while','parser.py',69),
-  ('command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET','command',7,'p_command_while','parser.py',70),
-  ('command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET','command',11,'p_command_for','parser.py',74),
-  ('expr -> expr PLUS expr','expr',3,'p_binary_expression','parser.py',84),
-  ('expr -> expr MINUS expr','expr',3,'p_binary_expression','parser.py',85),
-  ('expr -> expr TIMES expr','expr',3,'p_binary_expression','parser.py',86),
-  ('expr -> expr DIVIDE expr','expr',3,'p_binary_expression','parser.py',87),
-  ('expr -> expr MOD expr','expr',3,'p_binary_expression','parser.py',88),
-  ('expr -> ID ASSIGN expr','expr',3,'p_assign_expression','parser.py',93),
-  ('expr -> NUMBER','expr',1,'p_number_expression','parser.py',98),
-  ('expr -> STRINGS','expr',1,'p_string_expression','parser.py',103),
-  ('expr -> ID','expr',1,'p_variable_expression','parser.py',108),
-  ('expr -> LPAREN expr RPAREN','expr',3,'p_group_expression','parser.py',113),
-  ('relexpr -> expr LT expr','relexpr',3,'p_relational_expressions','parser.py',122),
-  ('relexpr -> expr LE expr','relexpr',3,'p_relational_expressions','parser.py',123),
-  ('relexpr -> expr GT expr','relexpr',3,'p_relational_expressions','parser.py',124),
-  ('relexpr -> expr GE expr','relexpr',3,'p_relational_expressions','parser.py',125),
-  ('relexpr -> expr EQUALS expr','relexpr',3,'p_relational_expressions','parser.py',126),
-  ('relexpr -> expr NE expr','relexpr',3,'p_relational_expressions','parser.py',127),
+  ('S -> statement S','S',2,'p_rec_statement','parser.py',22),
+  ('S -> statement END_LINE S','S',3,'p_rec_statement','parser.py',23),
+  ('S -> statement END_LINE','S',2,'p_statement','parser.py',31),
+  ('S -> command','S',1,'p_statement','parser.py',32),
+  ('S -> command END_LINE','S',2,'p_statement','parser.py',33),
+  ('statement -> declarations','statement',1,'p_declarations','parser.py',38),
+  ('statement -> expr','statement',1,'p_expr_statement','parser.py',43),
+  ('declarations -> VAR ID ASSIGN expr','declarations',4,'p_variables','parser.py',52),
+  ('declarations -> VAR ID ASSIGN relexpr','declarations',4,'p_variables','parser.py',53),
+  ('declarations -> VAR ID','declarations',2,'p_variables','parser.py',54),
+  ('command -> WRITE LPAREN expr RPAREN','command',4,'p_write','parser.py',66),
+  ('command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET','command',7,'p_command_while','parser.py',71),
+  ('command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET','command',7,'p_command_while','parser.py',72),
+  ('command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET','command',11,'p_command_for','parser.py',77),
+  ('expr -> expr PLUS expr','expr',3,'p_binary_expression','parser.py',87),
+  ('expr -> expr MINUS expr','expr',3,'p_binary_expression','parser.py',88),
+  ('expr -> expr TIMES expr','expr',3,'p_binary_expression','parser.py',89),
+  ('expr -> expr DIVIDE expr','expr',3,'p_binary_expression','parser.py',90),
+  ('expr -> expr MOD expr','expr',3,'p_binary_expression','parser.py',91),
+  ('expr -> expr INCREMENT','expr',2,'p_unary_expressions','parser.py',99),
+  ('expr -> expr DECREMENT','expr',2,'p_unary_expressions','parser.py',100),
+  ('expr -> ID ASSIGN expr','expr',3,'p_assign_expression','parser.py',105),
+  ('expr -> NUMBER','expr',1,'p_number_expression','parser.py',110),
+  ('expr -> STRINGS','expr',1,'p_string_expression','parser.py',115),
+  ('expr -> ID','expr',1,'p_variable_expression','parser.py',120),
+  ('expr -> LPAREN expr RPAREN','expr',3,'p_group_expression','parser.py',125),
+  ('relexpr -> expr LT expr','relexpr',3,'p_relational_expressions','parser.py',134),
+  ('relexpr -> expr LE expr','relexpr',3,'p_relational_expressions','parser.py',135),
+  ('relexpr -> expr GT expr','relexpr',3,'p_relational_expressions','parser.py',136),
+  ('relexpr -> expr GE expr','relexpr',3,'p_relational_expressions','parser.py',137),
+  ('relexpr -> expr EQUALS expr','relexpr',3,'p_relational_expressions','parser.py',138),
+  ('relexpr -> expr NE expr','relexpr',3,'p_relational_expressions','parser.py',139),
+  ('relexpr -> expr AND relexpr','relexpr',3,'p_rel_group','parser.py',144),
+  ('relexpr -> expr AND expr','relexpr',3,'p_rel_group','parser.py',145),
 ]

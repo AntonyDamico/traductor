@@ -38,10 +38,12 @@ tokens = (
     'LE',
     'GE',
     'NE',
-    'ANDLOGIC',
-    'ORLOGIC',
+    'AND',
+    'OR',
     'NOT',
-    'QUOTE'
+    'QUOTE',
+    'INCREMENT',
+    'DECREMENT'
 ) + tuple(map(lambda s: s.upper(), reserved))
 
 
@@ -51,6 +53,8 @@ t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_MOD = r'\%'
+t_INCREMENT = r'\+\+'
+t_DECREMENT = r'--'
 
 # Relational Operators
 t_GE = r'>='
@@ -61,8 +65,8 @@ t_LT = r'<'
 t_GT = r'>'
 
 # Logic Operators
-t_ANDLOGIC = r'&&'
-t_ORLOGIC = r'\|\|'
+t_AND = r'&&'
+t_OR = r'\|\|'
 t_NOT = r'\!'
 
 t_END_LINE = r';'
