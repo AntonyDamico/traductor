@@ -39,7 +39,8 @@ tokens = (
     'NOTASSIG',
     'ANLOGIC',
     'ORLOGIC',
-    'NOTCLA'
+    'NOTCLA',
+    'QUOTE'
 ) + tuple(map(lambda s: s.upper(), reserved))
 
 
@@ -104,3 +105,18 @@ def t_comment(t):
 def t_error(t):
     print ("Lexical: illegal character '%s' in line '%d' position" % (t.value[0], t.lineno))
     t.lexer.skip(1)
+
+
+lex.lex()
+
+# MAIN 
+if __name__ == "__main__":
+    f = open(sys.argv[1],'r')
+    datos = f.read()
+    f.close()
+    lex.input(datos)
+    
+    while 1 :
+    	token = lex.token()
+    	if not token: break
+    	print(token)
