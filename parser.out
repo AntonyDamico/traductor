@@ -1,0 +1,492 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    RETURN
+    LBRACKET
+    WHILE
+    ORLOGIC
+    QUOTE
+    STRINGS
+    COMMA
+    ASSIGN
+    FUNCTION
+    PROMPT
+    FOR
+    NOT
+    RBRACKET
+    ANDLOGIC
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> statement S
+Rule 2     S -> statement END_LINE S
+Rule 3     S -> statement END_LINE
+Rule 4     statement -> declarations
+Rule 5     declarations -> VAR ID
+Rule 6     declarations -> WRITE LPAREN expr RPAREN
+Rule 7     declaration -> IF LPAREN relexpr RPAREN
+Rule 8     expr -> expr PLUS expr
+Rule 9     expr -> expr MINUS expr
+Rule 10    expr -> expr TIMES expr
+Rule 11    expr -> expr DIVIDE expr
+Rule 12    expr -> expr MOD expr
+Rule 13    expr -> NUMBER
+Rule 14    expr -> LPAREN expr RPAREN
+Rule 15    relexpr -> expr LT expr
+Rule 16    relexpr -> expr LE expr
+Rule 17    relexpr -> expr GT expr
+Rule 18    relexpr -> expr GE expr
+Rule 19    relexpr -> expr EQUALS expr
+Rule 20    relexpr -> expr NE expr
+
+Terminals, with rules where they appear
+
+ANDLOGIC             : 
+ASSIGN               : 
+COMMA                : 
+DIVIDE               : 11
+END_LINE             : 2 3
+EQUALS               : 19
+FOR                  : 
+FUNCTION             : 
+GE                   : 18
+GT                   : 17
+ID                   : 5
+IF                   : 7
+LBRACKET             : 
+LE                   : 16
+LPAREN               : 6 7 14
+LT                   : 15
+MINUS                : 9
+MOD                  : 12
+NE                   : 20
+NOT                  : 
+NUMBER               : 13
+ORLOGIC              : 
+PLUS                 : 8
+PROMPT               : 
+QUOTE                : 
+RBRACKET             : 
+RETURN               : 
+RPAREN               : 6 7 14
+STRINGS              : 
+TIMES                : 10
+VAR                  : 5
+WHILE                : 
+WRITE                : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+S                    : 1 2 0
+declaration          : 
+declarations         : 4
+expr                 : 6 8 8 9 9 10 10 11 11 12 12 14 15 15 16 16 17 17 18 18 19 19 20 20
+relexpr              : 7
+statement            : 1 2 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . statement S
+    (2) S -> . statement END_LINE S
+    (3) S -> . statement END_LINE
+    (4) statement -> . declarations
+    (5) declarations -> . VAR ID
+    (6) declarations -> . WRITE LPAREN expr RPAREN
+
+    VAR             shift and go to state 5
+    WRITE           shift and go to state 2
+
+    S                              shift and go to state 3
+    declarations                   shift and go to state 1
+    statement                      shift and go to state 4
+
+state 1
+
+    (4) statement -> declarations .
+
+    END_LINE        reduce using rule 4 (statement -> declarations .)
+    VAR             reduce using rule 4 (statement -> declarations .)
+    WRITE           reduce using rule 4 (statement -> declarations .)
+
+
+state 2
+
+    (6) declarations -> WRITE . LPAREN expr RPAREN
+
+    LPAREN          shift and go to state 6
+
+
+state 3
+
+    (0) S' -> S .
+
+
+
+state 4
+
+    (1) S -> statement . S
+    (2) S -> statement . END_LINE S
+    (3) S -> statement . END_LINE
+    (1) S -> . statement S
+    (2) S -> . statement END_LINE S
+    (3) S -> . statement END_LINE
+    (4) statement -> . declarations
+    (5) declarations -> . VAR ID
+    (6) declarations -> . WRITE LPAREN expr RPAREN
+
+    END_LINE        shift and go to state 8
+    VAR             shift and go to state 5
+    WRITE           shift and go to state 2
+
+    S                              shift and go to state 7
+    declarations                   shift and go to state 1
+    statement                      shift and go to state 4
+
+state 5
+
+    (5) declarations -> VAR . ID
+
+    ID              shift and go to state 9
+
+
+state 6
+
+    (6) declarations -> WRITE LPAREN . expr RPAREN
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . NUMBER
+    (14) expr -> . LPAREN expr RPAREN
+
+    NUMBER          shift and go to state 11
+    LPAREN          shift and go to state 12
+
+    expr                           shift and go to state 10
+
+state 7
+
+    (1) S -> statement S .
+
+    $end            reduce using rule 1 (S -> statement S .)
+
+
+state 8
+
+    (2) S -> statement END_LINE . S
+    (3) S -> statement END_LINE .
+    (1) S -> . statement S
+    (2) S -> . statement END_LINE S
+    (3) S -> . statement END_LINE
+    (4) statement -> . declarations
+    (5) declarations -> . VAR ID
+    (6) declarations -> . WRITE LPAREN expr RPAREN
+
+    $end            reduce using rule 3 (S -> statement END_LINE .)
+    VAR             shift and go to state 5
+    WRITE           shift and go to state 2
+
+    S                              shift and go to state 13
+    declarations                   shift and go to state 1
+    statement                      shift and go to state 4
+
+state 9
+
+    (5) declarations -> VAR ID .
+
+    END_LINE        reduce using rule 5 (declarations -> VAR ID .)
+    VAR             reduce using rule 5 (declarations -> VAR ID .)
+    WRITE           reduce using rule 5 (declarations -> VAR ID .)
+
+
+state 10
+
+    (6) declarations -> WRITE LPAREN expr . RPAREN
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+
+    RPAREN          shift and go to state 14
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 15
+    MOD             shift and go to state 19
+
+
+state 11
+
+    (13) expr -> NUMBER .
+
+    RPAREN          reduce using rule 13 (expr -> NUMBER .)
+    PLUS            reduce using rule 13 (expr -> NUMBER .)
+    MINUS           reduce using rule 13 (expr -> NUMBER .)
+    TIMES           reduce using rule 13 (expr -> NUMBER .)
+    DIVIDE          reduce using rule 13 (expr -> NUMBER .)
+    MOD             reduce using rule 13 (expr -> NUMBER .)
+
+
+state 12
+
+    (14) expr -> LPAREN . expr RPAREN
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . NUMBER
+    (14) expr -> . LPAREN expr RPAREN
+
+    NUMBER          shift and go to state 11
+    LPAREN          shift and go to state 12
+
+    expr                           shift and go to state 20
+
+state 13
+
+    (2) S -> statement END_LINE S .
+
+    $end            reduce using rule 2 (S -> statement END_LINE S .)
+
+
+state 14
+
+    (6) declarations -> WRITE LPAREN expr RPAREN .
+
+    END_LINE        reduce using rule 6 (declarations -> WRITE LPAREN expr RPAREN .)
+    VAR             reduce using rule 6 (declarations -> WRITE LPAREN expr RPAREN .)
+    WRITE           reduce using rule 6 (declarations -> WRITE LPAREN expr RPAREN .)
+
+
+state 15
+
+    (11) expr -> expr DIVIDE . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . NUMBER
+    (14) expr -> . LPAREN expr RPAREN
+
+    NUMBER          shift and go to state 11
+    LPAREN          shift and go to state 12
+
+    expr                           shift and go to state 21
+
+state 16
+
+    (10) expr -> expr TIMES . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . NUMBER
+    (14) expr -> . LPAREN expr RPAREN
+
+    NUMBER          shift and go to state 11
+    LPAREN          shift and go to state 12
+
+    expr                           shift and go to state 22
+
+state 17
+
+    (8) expr -> expr PLUS . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . NUMBER
+    (14) expr -> . LPAREN expr RPAREN
+
+    NUMBER          shift and go to state 11
+    LPAREN          shift and go to state 12
+
+    expr                           shift and go to state 23
+
+state 18
+
+    (9) expr -> expr MINUS . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . NUMBER
+    (14) expr -> . LPAREN expr RPAREN
+
+    NUMBER          shift and go to state 11
+    LPAREN          shift and go to state 12
+
+    expr                           shift and go to state 24
+
+state 19
+
+    (12) expr -> expr MOD . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . NUMBER
+    (14) expr -> . LPAREN expr RPAREN
+
+    NUMBER          shift and go to state 11
+    LPAREN          shift and go to state 12
+
+    expr                           shift and go to state 25
+
+state 20
+
+    (14) expr -> LPAREN expr . RPAREN
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+
+    RPAREN          shift and go to state 26
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 15
+    MOD             shift and go to state 19
+
+
+state 21
+
+    (11) expr -> expr DIVIDE expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+
+    RPAREN          reduce using rule 11 (expr -> expr DIVIDE expr .)
+    PLUS            reduce using rule 11 (expr -> expr DIVIDE expr .)
+    MINUS           reduce using rule 11 (expr -> expr DIVIDE expr .)
+    TIMES           reduce using rule 11 (expr -> expr DIVIDE expr .)
+    DIVIDE          reduce using rule 11 (expr -> expr DIVIDE expr .)
+    MOD             reduce using rule 11 (expr -> expr DIVIDE expr .)
+
+  ! PLUS            [ shift and go to state 17 ]
+  ! MINUS           [ shift and go to state 18 ]
+  ! TIMES           [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 15 ]
+  ! MOD             [ shift and go to state 19 ]
+
+
+state 22
+
+    (10) expr -> expr TIMES expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+
+    RPAREN          reduce using rule 10 (expr -> expr TIMES expr .)
+    PLUS            reduce using rule 10 (expr -> expr TIMES expr .)
+    MINUS           reduce using rule 10 (expr -> expr TIMES expr .)
+    TIMES           reduce using rule 10 (expr -> expr TIMES expr .)
+    DIVIDE          reduce using rule 10 (expr -> expr TIMES expr .)
+    MOD             reduce using rule 10 (expr -> expr TIMES expr .)
+
+  ! PLUS            [ shift and go to state 17 ]
+  ! MINUS           [ shift and go to state 18 ]
+  ! TIMES           [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 15 ]
+  ! MOD             [ shift and go to state 19 ]
+
+
+state 23
+
+    (8) expr -> expr PLUS expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+
+    RPAREN          reduce using rule 8 (expr -> expr PLUS expr .)
+    PLUS            reduce using rule 8 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 8 (expr -> expr PLUS expr .)
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 15
+    MOD             shift and go to state 19
+
+  ! TIMES           [ reduce using rule 8 (expr -> expr PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 8 (expr -> expr PLUS expr .) ]
+  ! MOD             [ reduce using rule 8 (expr -> expr PLUS expr .) ]
+  ! PLUS            [ shift and go to state 17 ]
+  ! MINUS           [ shift and go to state 18 ]
+
+
+state 24
+
+    (9) expr -> expr MINUS expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+
+    RPAREN          reduce using rule 9 (expr -> expr MINUS expr .)
+    PLUS            reduce using rule 9 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 9 (expr -> expr MINUS expr .)
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 15
+    MOD             shift and go to state 19
+
+  ! TIMES           [ reduce using rule 9 (expr -> expr MINUS expr .) ]
+  ! DIVIDE          [ reduce using rule 9 (expr -> expr MINUS expr .) ]
+  ! MOD             [ reduce using rule 9 (expr -> expr MINUS expr .) ]
+  ! PLUS            [ shift and go to state 17 ]
+  ! MINUS           [ shift and go to state 18 ]
+
+
+state 25
+
+    (12) expr -> expr MOD expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+
+    RPAREN          reduce using rule 12 (expr -> expr MOD expr .)
+    PLUS            reduce using rule 12 (expr -> expr MOD expr .)
+    MINUS           reduce using rule 12 (expr -> expr MOD expr .)
+    TIMES           reduce using rule 12 (expr -> expr MOD expr .)
+    DIVIDE          reduce using rule 12 (expr -> expr MOD expr .)
+    MOD             reduce using rule 12 (expr -> expr MOD expr .)
+
+  ! PLUS            [ shift and go to state 17 ]
+  ! MINUS           [ shift and go to state 18 ]
+  ! TIMES           [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 15 ]
+  ! MOD             [ shift and go to state 19 ]
+
+
+state 26
+
+    (14) expr -> LPAREN expr RPAREN .
+
+    RPAREN          reduce using rule 14 (expr -> LPAREN expr RPAREN .)
+    PLUS            reduce using rule 14 (expr -> LPAREN expr RPAREN .)
+    MINUS           reduce using rule 14 (expr -> LPAREN expr RPAREN .)
+    TIMES           reduce using rule 14 (expr -> LPAREN expr RPAREN .)
+    DIVIDE          reduce using rule 14 (expr -> LPAREN expr RPAREN .)
+    MOD             reduce using rule 14 (expr -> LPAREN expr RPAREN .)
+
