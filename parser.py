@@ -30,7 +30,8 @@ def p_rec_statement(p):
 def p_statement(p):
     '''S : statement END_LINE
                  | command
-                 | command END_LINE'''
+                 | command END_LINE
+                 | ifcommand'''
     p[0] = p[1]
 
 
@@ -78,10 +79,23 @@ def p_command_for(p):
     '''
     p[0] = ('FOR', p[3], p[5], p[7], p[10])
 
-def p_command_if(p):
-    ''' command : IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET'''
-    p[0] = ('IF', p[3], p[5])
+# def p_command_if(p):
+    # if(len(p) > 8):
+    #     p[0] =('IF', p[3], p[6], 'ELSE', p[10])
+    # else:
+    #     p[0] = ('IF', p[3], p[6])
 
+def p_if(p):
+    ''' ifcommand : IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+                    | IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand 
+                    | IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET '''
+    if(len(p) > 11):
+        p[0] =('IF', p[3], p[6], 'ELSE', p[10])
+    elif(len(p) > 8):
+        p[0] = ('IF', p[3], p[6], 'ELSE', p[9])
+    else:
+        p[0] = ('IF', p[3], p[6])      
+    
 
 # =================================
 # ||       expressions           ||

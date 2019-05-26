@@ -1,9 +1,8 @@
 
 if(2 % 2 == 0) {
     write('good');
-} else {
-    write('not');
+} else if(2 > 3) {
+    var a = 1;
 }
 
-
-// TODO: NOT, else, grupos de booleans, funciones
+// TODO: NOT, grupos de booleans, funciones, booleans literales
