@@ -1,2 +1,1 @@
-var hello;
-write(2);
+var car = 2 >= 1;

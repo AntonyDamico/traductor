@@ -12,8 +12,10 @@ precedence = (
     ('right', 'NOT'),
 )
 
-# statements: declarations
 
+# =================================
+# ||        Statements           ||
+# =================================
 
 def p_rec_statement(p):
     '''S : statement S
@@ -33,25 +35,24 @@ def p_declarations(p):
     'statement : declarations'
     p[0] = p[1]
 
+
 # =================================
 # ||       declarations          ||
 # =================================
 
-
 def p_variables(p):
-    'declarations : VAR ID'
-    p[0] = ('VAR', p[2])
+    '''declarations : VAR ID ASSIGN expr
+                    | VAR ID ASSIGN relexpr
+                    | VAR ID'''
+    if(len(p) > 3):
+        p[0] = ('VAR', p[2], p[4])
+    else:
+        p[0] = ('VAR', p[2])
 
 
 def p_write(p):
     'declarations : WRITE LPAREN expr RPAREN'
     p[0] = ('WRITE', p[3])
-
-
-def p_if(p):
-    'declaration : IF LPAREN relexpr RPAREN'
-    p[0] = ('IF', p[3], p[5])
-
 
 
 # =================================
@@ -72,6 +73,10 @@ def p_number_expression(p):
     '''
     p[0] = ('NUMBER', p[1])
 
+
+def p_string_expression(p):
+    'expr : STRINGS'
+    p[0] = ('STRINGS', p[1])
 
 def p_group_expression(p):
     '''expr : LPAREN expr RPAREN'''
