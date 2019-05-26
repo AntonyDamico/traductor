@@ -1,4 +1,3 @@
-var a = 10;
-while ( a > 0 ) {
-    write(a);
+for (var i = 5; i < 10; i = i + 1) {
+    write(i);
 }
