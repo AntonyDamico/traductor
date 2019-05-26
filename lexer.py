@@ -30,15 +30,15 @@ tokens = (
     'LBRACKET',
     'RBRACKET',
     'ID',
-    'COMA',
+    'COMMA',
     'STRINGS',
     'EQUALS',
-    'LESS',
-    'GREATER',
-    'LESSTHAN',
-    'GREATERTHAN',
-    'NOTASSIG',
-    'ANLOGIC',
+    'LT',
+    'GT',
+    'LE',
+    'GE',
+    'NE',
+    'ANDLOGIC',
     'ORLOGIC',
     'NOT',
     'QUOTE'
@@ -53,15 +53,15 @@ t_DIVIDE = r'/'
 t_MOD = r'\%'
 
 # Relational Operators
-t_GREATERTHAN = r'>='
-t_LESSTHAN = r'<='
+t_GE = r'>='
+t_LE = r'<='
 t_EQUALS = r'=='
-t_NOTASSIG = r'!='
-t_LESS = r'<'
-t_GREATER = r'>'
+t_NE = r'!='
+t_LT = r'<'
+t_GT = r'>'
 
 # Logic Operators
-t_ANLOGIC = r'&&'
+t_ANDLOGIC = r'&&'
 t_ORLOGIC = r'\|\|'
 t_NOT = r'\!'
 
@@ -71,7 +71,7 @@ t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_LBRACKET = r'\{'
 t_RBRACKET = r'\}'
-t_COMA = r','
+t_COMMA = r','
 
 # Strings
 # t_STRINGS = r'\"([^\\\n]|(\\(.|\n)))*?\"'
