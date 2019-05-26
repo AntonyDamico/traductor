@@ -73,7 +73,8 @@ t_RBRACKET = r'\}'
 t_COMA = r','
 
 # Strings
-t_STRINGS = r'\"([^\\\n]|(\\(.|\n)))*?\"'
+# t_STRINGS = r'\"([^\\\n]|(\\(.|\n)))*?\"'
+t_STRINGS = r'(?:\'|\").*(?:\'|\")'
 # Ignoring spaces and tabs
 t_ignore = ' \t\v'
 # Ignoring multiline comments
