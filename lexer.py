@@ -44,7 +44,9 @@ tokens = (
     'NOT',
     'QUOTE',
     'INCREMENT',
-    'DECREMENT'
+    'DECREMENT',
+    'TRUE',
+    'FALSE'
 ) + tuple(map(lambda s: s.upper(), reserved))
 
 
@@ -69,6 +71,8 @@ t_GT = r'>'
 t_AND = r'&&'
 t_OR = r'\|\|'
 t_NOT = r'\!'
+t_TRUE = r'true'
+t_FALSE = r'false'
 
 t_END_LINE = r';'
 t_ASSIGN = r'='

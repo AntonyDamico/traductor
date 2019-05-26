@@ -85,17 +85,18 @@ def p_command_for(p):
     # else:
     #     p[0] = ('IF', p[3], p[6])
 
+
 def p_if(p):
     ''' ifcommand : IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
                     | IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand 
                     | IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET '''
     if(len(p) > 11):
-        p[0] =('IF', p[3], p[6], 'ELSE', p[10])
+        p[0] = ('IF', p[3], p[6], 'ELSE', p[10])
     elif(len(p) > 8):
         p[0] = ('IF', p[3], p[6], 'ELSE', p[9])
     else:
-        p[0] = ('IF', p[3], p[6])      
-    
+        p[0] = ('IF', p[3], p[6])
+
 
 # =================================
 # ||       expressions           ||
@@ -136,7 +137,10 @@ def p_string_expression(p):
 
 def p_variable_expression(p):
     'expr : ID'
-    p[0] = ('ID', p[1])
+    if(p[1] in ['true', 'false']):
+        p[0] = ('BOOL', p[1])
+    else:
+        p[0] = ('ID', p[1])
 
 
 def p_group_expression(p):
@@ -161,7 +165,8 @@ def p_relational_expressions(p):
 def p_rel_group(p):
     '''relexprgroup : relexpr AND relexprgroup
                     | relexpr OR relexprgroup
-                    | relexpr 
+                    | relexpr
+                    | expr
     '''
     if(len(p) > 3):
         p[0] = ('RELOPS', p[2], p[1], p[3])
