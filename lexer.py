@@ -81,44 +81,52 @@ t_ignore = ' \t\v'
 # Ignoring multiline comments
 t_ignore_COMMENT = r'/\*(.|\n)*?\*/'
 
+
 def t_NUMBER(t):
     r'\d+\.?(\d+)?'
     if eval(t.value) <= 32767 and '.' not in t.value:
         t.value = eval(t.value)
         return t
     else:
-        print ("Lexical: illegal character '%s' in line '%d' position" % (t.value, t.lineno))
+        print("Lexical: illegal character '%s' in line '%d' position" %
+              (t.value, t.lineno))
         t.lexer.skip(1)
- 
+
+
 def t_ID(t):
     r'[a-zA-z_]\w*'
     if t.value in reserved:
         t.type = t.value.upper()
     return t
- 
+
+
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
- 
+
+
 def t_comment(t):
     r'\//.*'
     pass
 
+
 def t_error(t):
-    print ("Lexical: illegal character '%s' in line '%d' position" % (t.value[0], t.lineno))
+    print("Lexical: illegal character '%s' in line '%d' position" %
+          (t.value[0], t.lineno))
     t.lexer.skip(1)
 
 
 lex.lex(reflags=re.UNICODE)
 
-# MAIN 
+# MAIN
 if __name__ == "__main__":
-    f = open(sys.argv[1],'r')
+    f = open(sys.argv[1], 'r')
     datos = f.read()
     f.close()
     lex.input(datos)
-    
-    while 1 :
-    	token = lex.token()
-    	if not token: break
-    	print(token)
+
+    while 1:
+        token = lex.token()
+        if not token:
+            break
+        print(token)

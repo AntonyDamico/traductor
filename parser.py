@@ -33,8 +33,9 @@ def p_declarations(p):
     'statement : declarations'
     p[0] = p[1]
 
-
-# declarations
+# =================================
+# ||       declarations          ||
+# =================================
 
 def p_variables(p):
     'declarations : VAR ids'
@@ -45,6 +46,8 @@ def p_write(p):
     'declarations : WRITE LPAREN expressions RPAREN'
     p[0] = ('WRITE', p[3])
 
+
 def p_if(p):
     'declaration : IF LPAREN condition RPAREN return_dec'
     p[0] = ('IF', p[3], p[5])
+
