@@ -78,6 +78,10 @@ def p_command_for(p):
     '''
     p[0] = ('FOR', p[3], p[5], p[7], p[10])
 
+def p_command_if(p):
+    ''' command : IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET'''
+    p[0] = ('IF', p[3], p[5])
+
 
 # =================================
 # ||       expressions           ||
@@ -141,9 +145,13 @@ def p_relational_expressions(p):
 
 
 def p_rel_group(p):
-    '''relexpr : expr AND relexpr
-               | expr AND expr
+    '''relexprgroup : relexpr AND relexprgroup
+                    | relexpr 
     '''
+    if(len(p) > 3):
+        p[0] = ('RELOPS', p[2], p[1], p[3])
+    else:
+        p[0] = p[1]
 
 
 # =================================

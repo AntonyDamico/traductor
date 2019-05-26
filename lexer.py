@@ -11,7 +11,8 @@ reserved = (
     'while',
     'if',
     'for',
-    'return'
+    'return',
+    'else'
 )
 
 # Lista de tokens mas las palabras reservadas
