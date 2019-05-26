@@ -8,9 +8,9 @@ reserved = (
     'function',
     'write',
     'prompt',
+    'while',
     'if',
     'for',
-    'while',
     'return'
 )
 

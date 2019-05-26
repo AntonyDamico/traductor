@@ -21,18 +21,19 @@ def p_rec_statement(p):
     '''S : statement S
          | statement END_LINE S'''
     if len(p) == 3:
-        p[0] = ('statement', p[1], p[2])
+        p[0] = (p[1], p[2])
     else:
-        p[0] = ('statement', p[1], p[3])
+        p[0] = (p[1], p[3])
 
 
 def p_statement(p):
-    'S : statement END_LINE'
+    '''S : statement END_LINE
+                 | command'''
     p[0] = p[1]
 
 
 def p_declarations(p):
-    'statement : declarations'
+    '''statement : declarations'''
     p[0] = p[1]
 
 
@@ -55,6 +56,13 @@ def p_write(p):
     p[0] = ('WRITE', p[3])
 
 
+def p_command_while(p):
+    '''command : WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+               | WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET'''
+    p[0] = ('WHILE', p[3], p[6])
+
+
+
 # =================================
 # ||       expressions           ||
 # =================================
@@ -69,14 +77,17 @@ def p_binary_expression(p):
 
 
 def p_number_expression(p):
-    '''expr : NUMBER
-    '''
+    '''expr : NUMBER'''
     p[0] = ('NUMBER', p[1])
 
 
 def p_string_expression(p):
     'expr : STRINGS'
     p[0] = ('STRINGS', p[1])
+
+def p_variable_expression(p):
+    'expr : ID'
+    p[0] = ('ID', p[1])
 
 def p_group_expression(p):
     '''expr : LPAREN expr RPAREN'''
@@ -95,6 +106,13 @@ def p_relational_expressions(p):
                | expr EQUALS expr
                | expr NE expr'''
     p[0] = ('RELOP', p[2], p[1], p[3])
+
+
+
+# =================================
+# ||         Commands            ||
+# =================================
+
 
 
 parser = yacc.yacc()

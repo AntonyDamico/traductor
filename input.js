@@ -1,1 +1,4 @@
-var car = 2 >= 1;
+var a = 10;
+while ( a > 0 ) {
+    write(a);
+}
