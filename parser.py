@@ -173,8 +173,12 @@ def p_relational_expressions(p):
                | expr GT expr
                | expr GE expr
                | expr EQUALS expr
-               | expr NE expr'''
-    p[0] = ast.OpNode(p[2], [p[1], p[3]])
+               | expr NE expr
+               | NOT expr'''
+    if(len(p) > 3):
+        p[0] = ast.OpNode(p[2], [p[1], p[3]])
+    else:
+        p[0] = ast.OpNode(p[1], [p[2]])
 
 
 def p_rel_group(p):
@@ -195,12 +199,14 @@ def p_rel_group(p):
 # ||         Commands            ||
 # =================================
 
-parser = yacc.yacc()
-file = open('input.js')
-code = file.read()
-file.close()
-result = parser.parse(code)
-print(result)
+def parse(filename):
+    parser = yacc.yacc()
+    file = open(filename)
+    code = file.read()
+    file.close()
+    result = parser.parse(code)
+    print(result)
+    return result
 # print(result.nodeTree())
 
 
@@ -222,3 +228,4 @@ def foo(a, spaces):
 
 
 # foo(result, 0)
+parse('input.js')

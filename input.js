@@ -13,13 +13,8 @@
 // }
 // TODO: NOT, grupos de booleans, funciones, arrays
 
-var a = 4;
+var a = 10;
 
-while(a) {
-    var b = 2;
-    if(b < a) {
-        a = b -1;
-    } else {
-        write('hello');
-    }
+while(!true) {
+    var b = 12;
 }

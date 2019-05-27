@@ -66,13 +66,6 @@ class OpNode(Node):
         return "%s (%s)" % (self.op, self.nbargs)
    
 
-class EntryNode(Node):
-    type = 'ENTRY'
-
-    def __init__(self):
-        Node.__init__(self, None)
-
-
 def addToClass(cls):
 
     def decorator(func):
