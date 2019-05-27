@@ -11,8 +11,6 @@
 //         write(i);
 //     }
 // }
-var a = 12;
 
-for(var i = 0; i < 100; i++) {
-    write ('hola' + i);
-}
+
+write (2 + ' jjj ');

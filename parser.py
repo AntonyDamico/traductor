@@ -71,7 +71,7 @@ def p_variables(p):
     if(len(p) > 3):
         p[0] = ast.VarNode([ast.TokenNode(p[2]), p[4]])
     else:
-        p[0] = ast.VarNode([p[2]])
+        p[0] = ast.VarNode(ast.TokenNode(p[2]))
 
 
 # =================================

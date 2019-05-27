@@ -7,7 +7,6 @@ class Node:
 
     count = 0
     type = 'Node (unspecified)'
-    shape = 'ellipse'
 
     def __init__(self, children=None):
         self.ID = str(Node.count)
@@ -22,14 +21,11 @@ class Node:
         self.next = []
 
     def eval_all(self):
-        # self.eval()
-        # print('======')
-        # print(self.children)
         print(self.__class__.__name__)
         print(self.children)
         print('====================')
         if(len(self.children) < 2):
-            print('no')
+            self.eval()
         for c in self.children:
             if(c.children):
                 c.eval()
@@ -71,6 +67,9 @@ class TokenNode(Node):
         return repr(self.tok)
 
     def eval(self):
+        if(isinstance(self.tok, str)):
+           if(self.tok[0] == "'" or self.tok[0] == '"'):
+               return self.tok[1:-1] 
         return self.tok
 
 
@@ -91,6 +90,11 @@ class OpNode(Node):
     def eval(self):
         first = self.children[0].eval()
         second = self.children[1].eval()
+
+        if(isinstance(first, str) or isinstance(second, str)):
+            first = str(first)
+            second = str(second)
+
         if(self.op == '+'):
             return first + second
         if(self.op == '-'):
@@ -123,20 +127,12 @@ class UnOpNode(Node):
     def eval(self):
         global table
         if(self.op == '++'):
-            table.updateVariable(self.children[0].name, self.children[0].eval() + 1)
+            table.updateVariable(
+                self.children[0].name, self.children[0].eval() + 1)
         if(self.op == '--'):
-            table.updateVariable(self.children[0].name, self.children[0].eval() - 1)
+            table.updateVariable(
+                self.children[0].name, self.children[0].eval() - 1)
 
-
-def addToClass(cls):
-
-    def decorator(func):
-        setattr(cls, func.__name__, func)
-        return func
-    return decorator
-
-
-""" ARBOL AST: CLASES """
 
 
 class Statement(Node):
@@ -145,22 +141,6 @@ class Statement(Node):
     def eval(self):
         for c in self.children:
             c.eval()
-
-
-class Funcion(Node):
-    type = 'function'
-
-
-class FuncionNType(Node):
-    type = 'funcion'
-
-
-class Argumentos(Node):
-    type = 'argv'
-
-
-class Return(Node):
-    type = 'return'
 
 
 class VarNode(Node):
@@ -204,18 +184,12 @@ class ForNode(Node):
             self.children[3].eval()
 
 
-
-
 class AssignNode(Node):
     type = 'assign'
 
     def eval(self):
         global table
         table.updateVariable(self.children[0].eval(), self.children[1].eval())
-
-
-class CallFunNode(Node):
-    type = 'callfun'
 
 
 class IdNode(Node):
@@ -228,18 +202,6 @@ class IdNode(Node):
     def eval(self):
         global table
         return table.readVariable(self.children[0].eval())
-
-
-class ExpresionesNode(Node):
-    type = 'Expresiones'
-
-
-class CondicionesNode(Node):
-    type = 'Condiciones'
-
-
-class LambdaNode(Node):
-    type = 'lambda'
 
 
 class WhileNode(Node):
