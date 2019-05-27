@@ -113,6 +113,21 @@ class OpNode(Node):
             return first == second
 
 
+class UnOpNode(Node):
+    type = 'Unary'
+
+    def __init__(self, op, children):
+        Node.__init__(self, children)
+        self.op = op
+
+    def eval(self):
+        global table
+        if(self.op == '++'):
+            table.updateVariable(self.children[0].name, self.children[0].eval() + 1)
+        if(self.op == '--'):
+            table.updateVariable(self.children[0].name, self.children[0].eval() - 1)
+
+
 def addToClass(cls):
 
     def decorator(func):
@@ -182,6 +197,14 @@ class IfNode(Node):
 class ForNode(Node):
     type = 'for'
 
+    def eval(self):
+        self.children[0].eval()
+        while(self.children[1].eval()):
+            self.children[2].eval()
+            self.children[3].eval()
+
+
+
 
 class AssignNode(Node):
     type = 'assign'
@@ -197,6 +220,10 @@ class CallFunNode(Node):
 
 class IdNode(Node):
     type = 'id'
+
+    def __init__(self, children):
+        Node.__init__(self, children)
+        self.name = self.children[0].eval()
 
     def eval(self):
         global table

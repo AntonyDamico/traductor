@@ -131,7 +131,7 @@ def p_binary_expression(p):
 def p_unary_expressions(p):
     '''expr : expr INCREMENT
             | expr DECREMENT'''
-    p[0] = ast.OpNode(p[2], [p[1]])
+    p[0] = ast.UnOpNode(p[2], p[1])
 
 
 def p_assign_expression(p):
