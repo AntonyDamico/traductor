@@ -132,7 +132,6 @@ class Statement(Node):
             c.eval()
 
 
-
 class Funcion(Node):
     type = 'function'
 
@@ -187,6 +186,10 @@ class ForNode(Node):
 class AssignNode(Node):
     type = 'assign'
 
+    def eval(self):
+        global table
+        table.updateVariable(self.children[0].eval(), self.children[1].eval())
+
 
 class CallFunNode(Node):
     type = 'callfun'
@@ -214,6 +217,10 @@ class LambdaNode(Node):
 
 class WhileNode(Node):
     type = 'while'
+
+    def eval(self):
+        while(self.children[0].eval()):
+            self.children[1].eval()
 
 
 class ElseNode(Node):

@@ -49,6 +49,7 @@ def p_commands(p):
 #     'statement: ifcommand'
 #     p[0] = p[1]
 
+
 def p_declarations(p):
     '''statement : declarations'''
     p[0] = p[1]

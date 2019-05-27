@@ -12,6 +12,7 @@
 //     }
 // }
 var a = 12;
-a = a - 10;
-// a = a - 1;
-// write(a);
+while (a > 1) {
+    write('hola');
+    a = a - 1
+}
