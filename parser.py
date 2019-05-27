@@ -19,22 +19,35 @@ precedence = (
 # ||        Statements           ||
 # =================================
 
+def p_error(p):
+    # print('ERROR')
+    print("Sintantic: syntax error '%s' in line %d" % (p.value, p.lineno))
+    sys.exit()
+
+
 def p_rec_statement(p):
     '''S : statement S
-         | statement END_LINE S'''
-    # if len(p) == 3:
-    #     p[0] = (p[1], p[2])
-    # else:
-    p[0] = ast.Statement([p[1], p[3]])
+         | statement END_LINE S
+         '''
+    if len(p) == 3:
+        p[0] = ast.Statement([p[1], p[2]])
+    else:
+        p[0] = ast.Statement([p[1], p[3]])
 
 
 def p_statement(p):
     '''S : statement END_LINE
-                 | command
-                 | command END_LINE
-                 | ifcommand'''
+                 | statement'''
     p[0] = p[1]
 
+
+def p_commands(p):
+    'statement : command'
+    p[0] = p[1]
+
+# def if_commands(p):
+#     'statement: ifcommand'
+#     p[0] = p[1]
 
 def p_declarations(p):
     '''statement : declarations'''
@@ -89,8 +102,8 @@ def p_command_for(p):
 
 
 def p_if(p):
-    ''' ifcommand : IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-                    | IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
+    ''' command : IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+                    | IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
                     | IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET '''
     if(len(p) > 11):
         p[0] = ast.IfNode([p[3], p[6],  ast.ElseNode([p[10]])])
@@ -135,17 +148,19 @@ def p_string_expression(p):
 
 
 def p_variable_expression(p):
-    'expr : ID'
+    '''expr : ID
+            | TRUE
+            | FALSE'''
     if(p[1] in ['true', 'false']):
-        p[0] = ('BOOL', p[1])
+        p[0] = ast.TokenNode(p[1] == 'true')
     else:
         # p[0] = ('ID', p[1])
         p[0] = ast.TokenNode([p[1]])
 
 
-def p_group_expression(p):
-    '''expr : LPAREN expr RPAREN'''
-    p[0] = ('GROUP', p[2])
+# def p_group_expression(p):
+#     '''expr : LPAREN expr RPAREN'''
+#     p[0] = (p[2])
 
 
 # =================================

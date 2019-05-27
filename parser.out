@@ -3,12 +3,8 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     RETURN
-    TRUE
-    QUOTE
     COMMA
     FUNCTION
-    PROMPT
-    FALSE
     NOT
 
 Grammar
@@ -17,33 +13,33 @@ Rule 0     S' -> S
 Rule 1     S -> statement S
 Rule 2     S -> statement END_LINE S
 Rule 3     S -> statement END_LINE
-Rule 4     S -> command
-Rule 5     S -> command END_LINE
-Rule 6     S -> ifcommand
-Rule 7     statement -> declarations
-Rule 8     statement -> expr
-Rule 9     declarations -> VAR ID ASSIGN expr
-Rule 10    declarations -> VAR ID ASSIGN relexpr
-Rule 11    declarations -> VAR ID
-Rule 12    command -> WRITE LPAREN expr RPAREN
-Rule 13    command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
-Rule 14    command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
-Rule 15    command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-Rule 16    ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-Rule 17    ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-Rule 18    ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-Rule 19    expr -> expr PLUS expr
-Rule 20    expr -> expr MINUS expr
-Rule 21    expr -> expr TIMES expr
-Rule 22    expr -> expr DIVIDE expr
-Rule 23    expr -> expr MOD expr
-Rule 24    expr -> expr INCREMENT
-Rule 25    expr -> expr DECREMENT
-Rule 26    expr -> ID ASSIGN expr
-Rule 27    expr -> NUMBER
-Rule 28    expr -> STRINGS
-Rule 29    expr -> ID
-Rule 30    expr -> LPAREN expr RPAREN
+Rule 4     S -> statement
+Rule 5     statement -> command
+Rule 6     statement -> declarations
+Rule 7     statement -> expr
+Rule 8     declarations -> VAR ID ASSIGN expr
+Rule 9     declarations -> VAR ID ASSIGN relexpr
+Rule 10    declarations -> VAR ID
+Rule 11    command -> WRITE LPAREN expr RPAREN
+Rule 12    command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+Rule 13    command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+Rule 14    command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+Rule 15    command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+Rule 16    command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+Rule 17    command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+Rule 18    expr -> expr PLUS expr
+Rule 19    expr -> expr MINUS expr
+Rule 20    expr -> expr TIMES expr
+Rule 21    expr -> expr DIVIDE expr
+Rule 22    expr -> expr MOD expr
+Rule 23    expr -> expr INCREMENT
+Rule 24    expr -> expr DECREMENT
+Rule 25    expr -> ID ASSIGN expr
+Rule 26    expr -> NUMBER
+Rule 27    expr -> STRINGS
+Rule 28    expr -> ID
+Rule 29    expr -> TRUE
+Rule 30    expr -> FALSE
 Rule 31    relexpr -> expr LT expr
 Rule 32    relexpr -> expr LE expr
 Rule 33    relexpr -> expr GT expr
@@ -58,55 +54,52 @@ Rule 40    relexprgroup -> expr
 Terminals, with rules where they appear
 
 AND                  : 37
-ASSIGN               : 9 10 26
+ASSIGN               : 8 9 25
 COMMA                : 
-DECREMENT            : 25
-DIVIDE               : 22
-ELSE                 : 17 18
-END_LINE             : 2 3 5 15 15
+DECREMENT            : 24
+DIVIDE               : 21
+ELSE                 : 16 17
+END_LINE             : 2 3 14 14
 EQUALS               : 35
-FALSE                : 
-FOR                  : 15
+FALSE                : 30
+FOR                  : 14
 FUNCTION             : 
 GE                   : 34
 GT                   : 33
-ID                   : 9 10 11 26 29
-IF                   : 16 17 18
-INCREMENT            : 24
-LBRACKET             : 13 14 15 16 17 18 18
+ID                   : 8 9 10 25 28
+IF                   : 15 16 17
+INCREMENT            : 23
+LBRACKET             : 12 13 14 15 16 17 17
 LE                   : 32
-LPAREN               : 12 13 14 15 16 17 18 30
+LPAREN               : 11 12 13 14 15 16 17
 LT                   : 31
-MINUS                : 20
-MOD                  : 23
+MINUS                : 19
+MOD                  : 22
 NE                   : 36
 NOT                  : 
-NUMBER               : 27
+NUMBER               : 26
 OR                   : 38
-PLUS                 : 19
-PROMPT               : 
-QUOTE                : 
-RBRACKET             : 13 14 15 16 17 18 18
+PLUS                 : 18
+RBRACKET             : 12 13 14 15 16 17 17
 RETURN               : 
-RPAREN               : 12 13 14 15 16 17 18 30
-STRINGS              : 28
-TIMES                : 21
-TRUE                 : 
-VAR                  : 9 10 11
-WHILE                : 13 14
-WRITE                : 12
+RPAREN               : 11 12 13 14 15 16 17
+STRINGS              : 27
+TIMES                : 20
+TRUE                 : 29
+VAR                  : 8 9 10
+WHILE                : 12 13
+WRITE                : 11
 error                : 
 
 Nonterminals, with rules where they appear
 
-S                    : 1 2 13 14 15 16 17 18 18 0
-command              : 4 5
-declarations         : 7 15
-expr                 : 8 9 12 13 15 19 19 20 20 21 21 22 22 23 23 24 25 26 30 31 31 32 32 33 33 34 34 35 35 36 36 40
-ifcommand            : 6 17
-relexpr              : 10 14 15 37 38 39
-relexprgroup         : 16 17 18 37 38
-statement            : 1 2 3
+S                    : 1 2 12 13 14 15 16 17 17 0
+command              : 5 16
+declarations         : 6 14
+expr                 : 7 8 11 12 14 18 18 19 19 20 20 21 21 22 22 23 24 25 31 31 32 32 33 33 34 34 35 35 36 36 40
+relexpr              : 9 13 14 37 38 39
+relexprgroup         : 15 16 17 37 38
+statement            : 1 2 3 4
 
 Parsing method: LALR
 
@@ -116,195 +109,231 @@ state 0
     (1) S -> . statement S
     (2) S -> . statement END_LINE S
     (3) S -> . statement END_LINE
-    (4) S -> . command
-    (5) S -> . command END_LINE
-    (6) S -> . ifcommand
-    (7) statement -> . declarations
-    (8) statement -> . expr
-    (12) command -> . WRITE LPAREN expr RPAREN
-    (13) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
-    (14) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
-    (15) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-    (16) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-    (9) declarations -> . VAR ID ASSIGN expr
-    (10) declarations -> . VAR ID ASSIGN relexpr
-    (11) declarations -> . VAR ID
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (4) S -> . statement
+    (5) statement -> . command
+    (6) statement -> . declarations
+    (7) statement -> . expr
+    (11) command -> . WRITE LPAREN expr RPAREN
+    (12) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (14) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (15) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (8) declarations -> . VAR ID ASSIGN expr
+    (9) declarations -> . VAR ID ASSIGN relexpr
+    (10) declarations -> . VAR ID
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
     WRITE           shift and go to state 7
     WHILE           shift and go to state 2
     FOR             shift and go to state 6
-    IF              shift and go to state 12
-    VAR             shift and go to state 10
-    ID              shift and go to state 11
+    IF              shift and go to state 11
+    VAR             shift and go to state 9
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    ifcommand                      shift and go to state 5
     expr                           shift and go to state 13
     declarations                   shift and go to state 14
     S                              shift and go to state 8
     command                        shift and go to state 15
-    statement                      shift and go to state 4
+    statement                      shift and go to state 5
 
 state 1
 
-    (27) expr -> NUMBER .
+    (26) expr -> NUMBER .
 
-    LT              reduce using rule 27 (expr -> NUMBER .)
-    LE              reduce using rule 27 (expr -> NUMBER .)
-    GT              reduce using rule 27 (expr -> NUMBER .)
-    GE              reduce using rule 27 (expr -> NUMBER .)
-    EQUALS          reduce using rule 27 (expr -> NUMBER .)
-    NE              reduce using rule 27 (expr -> NUMBER .)
-    PLUS            reduce using rule 27 (expr -> NUMBER .)
-    MINUS           reduce using rule 27 (expr -> NUMBER .)
-    TIMES           reduce using rule 27 (expr -> NUMBER .)
-    DIVIDE          reduce using rule 27 (expr -> NUMBER .)
-    MOD             reduce using rule 27 (expr -> NUMBER .)
-    INCREMENT       reduce using rule 27 (expr -> NUMBER .)
-    DECREMENT       reduce using rule 27 (expr -> NUMBER .)
-    RPAREN          reduce using rule 27 (expr -> NUMBER .)
-    END_LINE        reduce using rule 27 (expr -> NUMBER .)
-    WRITE           reduce using rule 27 (expr -> NUMBER .)
-    WHILE           reduce using rule 27 (expr -> NUMBER .)
-    FOR             reduce using rule 27 (expr -> NUMBER .)
-    IF              reduce using rule 27 (expr -> NUMBER .)
-    VAR             reduce using rule 27 (expr -> NUMBER .)
-    ID              reduce using rule 27 (expr -> NUMBER .)
-    NUMBER          reduce using rule 27 (expr -> NUMBER .)
-    STRINGS         reduce using rule 27 (expr -> NUMBER .)
-    LPAREN          reduce using rule 27 (expr -> NUMBER .)
-    AND             reduce using rule 27 (expr -> NUMBER .)
-    OR              reduce using rule 27 (expr -> NUMBER .)
+    PLUS            reduce using rule 26 (expr -> NUMBER .)
+    MINUS           reduce using rule 26 (expr -> NUMBER .)
+    TIMES           reduce using rule 26 (expr -> NUMBER .)
+    DIVIDE          reduce using rule 26 (expr -> NUMBER .)
+    MOD             reduce using rule 26 (expr -> NUMBER .)
+    INCREMENT       reduce using rule 26 (expr -> NUMBER .)
+    DECREMENT       reduce using rule 26 (expr -> NUMBER .)
+    RPAREN          reduce using rule 26 (expr -> NUMBER .)
+    AND             reduce using rule 26 (expr -> NUMBER .)
+    OR              reduce using rule 26 (expr -> NUMBER .)
+    END_LINE        reduce using rule 26 (expr -> NUMBER .)
+    WRITE           reduce using rule 26 (expr -> NUMBER .)
+    WHILE           reduce using rule 26 (expr -> NUMBER .)
+    FOR             reduce using rule 26 (expr -> NUMBER .)
+    IF              reduce using rule 26 (expr -> NUMBER .)
+    VAR             reduce using rule 26 (expr -> NUMBER .)
+    ID              reduce using rule 26 (expr -> NUMBER .)
+    NUMBER          reduce using rule 26 (expr -> NUMBER .)
+    STRINGS         reduce using rule 26 (expr -> NUMBER .)
+    TRUE            reduce using rule 26 (expr -> NUMBER .)
+    FALSE           reduce using rule 26 (expr -> NUMBER .)
+    $end            reduce using rule 26 (expr -> NUMBER .)
+    RBRACKET        reduce using rule 26 (expr -> NUMBER .)
+    LT              reduce using rule 26 (expr -> NUMBER .)
+    LE              reduce using rule 26 (expr -> NUMBER .)
+    GT              reduce using rule 26 (expr -> NUMBER .)
+    GE              reduce using rule 26 (expr -> NUMBER .)
+    EQUALS          reduce using rule 26 (expr -> NUMBER .)
+    NE              reduce using rule 26 (expr -> NUMBER .)
 
 
 state 2
 
-    (13) command -> WHILE . LPAREN expr RPAREN LBRACKET S RBRACKET
-    (14) command -> WHILE . LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (12) command -> WHILE . LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> WHILE . LPAREN relexpr RPAREN LBRACKET S RBRACKET
 
     LPAREN          shift and go to state 16
 
 
 state 3
 
-    (28) expr -> STRINGS .
+    (29) expr -> TRUE .
 
-    LT              reduce using rule 28 (expr -> STRINGS .)
-    LE              reduce using rule 28 (expr -> STRINGS .)
-    GT              reduce using rule 28 (expr -> STRINGS .)
-    GE              reduce using rule 28 (expr -> STRINGS .)
-    EQUALS          reduce using rule 28 (expr -> STRINGS .)
-    NE              reduce using rule 28 (expr -> STRINGS .)
-    PLUS            reduce using rule 28 (expr -> STRINGS .)
-    MINUS           reduce using rule 28 (expr -> STRINGS .)
-    TIMES           reduce using rule 28 (expr -> STRINGS .)
-    DIVIDE          reduce using rule 28 (expr -> STRINGS .)
-    MOD             reduce using rule 28 (expr -> STRINGS .)
-    INCREMENT       reduce using rule 28 (expr -> STRINGS .)
-    DECREMENT       reduce using rule 28 (expr -> STRINGS .)
-    RPAREN          reduce using rule 28 (expr -> STRINGS .)
-    END_LINE        reduce using rule 28 (expr -> STRINGS .)
-    WRITE           reduce using rule 28 (expr -> STRINGS .)
-    WHILE           reduce using rule 28 (expr -> STRINGS .)
-    FOR             reduce using rule 28 (expr -> STRINGS .)
-    IF              reduce using rule 28 (expr -> STRINGS .)
-    VAR             reduce using rule 28 (expr -> STRINGS .)
-    ID              reduce using rule 28 (expr -> STRINGS .)
-    NUMBER          reduce using rule 28 (expr -> STRINGS .)
-    STRINGS         reduce using rule 28 (expr -> STRINGS .)
-    LPAREN          reduce using rule 28 (expr -> STRINGS .)
-    AND             reduce using rule 28 (expr -> STRINGS .)
-    OR              reduce using rule 28 (expr -> STRINGS .)
+    PLUS            reduce using rule 29 (expr -> TRUE .)
+    MINUS           reduce using rule 29 (expr -> TRUE .)
+    TIMES           reduce using rule 29 (expr -> TRUE .)
+    DIVIDE          reduce using rule 29 (expr -> TRUE .)
+    MOD             reduce using rule 29 (expr -> TRUE .)
+    INCREMENT       reduce using rule 29 (expr -> TRUE .)
+    DECREMENT       reduce using rule 29 (expr -> TRUE .)
+    RPAREN          reduce using rule 29 (expr -> TRUE .)
+    AND             reduce using rule 29 (expr -> TRUE .)
+    OR              reduce using rule 29 (expr -> TRUE .)
+    END_LINE        reduce using rule 29 (expr -> TRUE .)
+    WRITE           reduce using rule 29 (expr -> TRUE .)
+    WHILE           reduce using rule 29 (expr -> TRUE .)
+    FOR             reduce using rule 29 (expr -> TRUE .)
+    IF              reduce using rule 29 (expr -> TRUE .)
+    VAR             reduce using rule 29 (expr -> TRUE .)
+    ID              reduce using rule 29 (expr -> TRUE .)
+    NUMBER          reduce using rule 29 (expr -> TRUE .)
+    STRINGS         reduce using rule 29 (expr -> TRUE .)
+    TRUE            reduce using rule 29 (expr -> TRUE .)
+    FALSE           reduce using rule 29 (expr -> TRUE .)
+    $end            reduce using rule 29 (expr -> TRUE .)
+    RBRACKET        reduce using rule 29 (expr -> TRUE .)
+    LT              reduce using rule 29 (expr -> TRUE .)
+    LE              reduce using rule 29 (expr -> TRUE .)
+    GT              reduce using rule 29 (expr -> TRUE .)
+    GE              reduce using rule 29 (expr -> TRUE .)
+    EQUALS          reduce using rule 29 (expr -> TRUE .)
+    NE              reduce using rule 29 (expr -> TRUE .)
 
 
 state 4
 
+    (27) expr -> STRINGS .
+
+    PLUS            reduce using rule 27 (expr -> STRINGS .)
+    MINUS           reduce using rule 27 (expr -> STRINGS .)
+    TIMES           reduce using rule 27 (expr -> STRINGS .)
+    DIVIDE          reduce using rule 27 (expr -> STRINGS .)
+    MOD             reduce using rule 27 (expr -> STRINGS .)
+    INCREMENT       reduce using rule 27 (expr -> STRINGS .)
+    DECREMENT       reduce using rule 27 (expr -> STRINGS .)
+    RPAREN          reduce using rule 27 (expr -> STRINGS .)
+    AND             reduce using rule 27 (expr -> STRINGS .)
+    OR              reduce using rule 27 (expr -> STRINGS .)
+    END_LINE        reduce using rule 27 (expr -> STRINGS .)
+    WRITE           reduce using rule 27 (expr -> STRINGS .)
+    WHILE           reduce using rule 27 (expr -> STRINGS .)
+    FOR             reduce using rule 27 (expr -> STRINGS .)
+    IF              reduce using rule 27 (expr -> STRINGS .)
+    VAR             reduce using rule 27 (expr -> STRINGS .)
+    ID              reduce using rule 27 (expr -> STRINGS .)
+    NUMBER          reduce using rule 27 (expr -> STRINGS .)
+    STRINGS         reduce using rule 27 (expr -> STRINGS .)
+    TRUE            reduce using rule 27 (expr -> STRINGS .)
+    FALSE           reduce using rule 27 (expr -> STRINGS .)
+    $end            reduce using rule 27 (expr -> STRINGS .)
+    RBRACKET        reduce using rule 27 (expr -> STRINGS .)
+    LT              reduce using rule 27 (expr -> STRINGS .)
+    LE              reduce using rule 27 (expr -> STRINGS .)
+    GT              reduce using rule 27 (expr -> STRINGS .)
+    GE              reduce using rule 27 (expr -> STRINGS .)
+    EQUALS          reduce using rule 27 (expr -> STRINGS .)
+    NE              reduce using rule 27 (expr -> STRINGS .)
+
+
+state 5
+
     (1) S -> statement . S
     (2) S -> statement . END_LINE S
     (3) S -> statement . END_LINE
+    (4) S -> statement .
     (1) S -> . statement S
     (2) S -> . statement END_LINE S
     (3) S -> . statement END_LINE
-    (4) S -> . command
-    (5) S -> . command END_LINE
-    (6) S -> . ifcommand
-    (7) statement -> . declarations
-    (8) statement -> . expr
-    (12) command -> . WRITE LPAREN expr RPAREN
-    (13) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
-    (14) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
-    (15) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-    (16) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-    (9) declarations -> . VAR ID ASSIGN expr
-    (10) declarations -> . VAR ID ASSIGN relexpr
-    (11) declarations -> . VAR ID
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (4) S -> . statement
+    (5) statement -> . command
+    (6) statement -> . declarations
+    (7) statement -> . expr
+    (11) command -> . WRITE LPAREN expr RPAREN
+    (12) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (14) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (15) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (8) declarations -> . VAR ID ASSIGN expr
+    (9) declarations -> . VAR ID ASSIGN relexpr
+    (10) declarations -> . VAR ID
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
     END_LINE        shift and go to state 18
+    RBRACKET        reduce using rule 4 (S -> statement .)
+    $end            reduce using rule 4 (S -> statement .)
     WRITE           shift and go to state 7
     WHILE           shift and go to state 2
     FOR             shift and go to state 6
-    IF              shift and go to state 12
-    VAR             shift and go to state 10
-    ID              shift and go to state 11
+    IF              shift and go to state 11
+    VAR             shift and go to state 9
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    ifcommand                      shift and go to state 5
     expr                           shift and go to state 13
     declarations                   shift and go to state 14
     S                              shift and go to state 17
     command                        shift and go to state 15
-    statement                      shift and go to state 4
-
-state 5
-
-    (6) S -> ifcommand .
-
-    RBRACKET        reduce using rule 6 (S -> ifcommand .)
-    $end            reduce using rule 6 (S -> ifcommand .)
-
+    statement                      shift and go to state 5
 
 state 6
 
-    (15) command -> FOR . LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (14) command -> FOR . LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
 
     LPAREN          shift and go to state 19
 
 
 state 7
 
-    (12) command -> WRITE . LPAREN expr RPAREN
+    (11) command -> WRITE . LPAREN expr RPAREN
 
     LPAREN          shift and go to state 20
 
@@ -317,151 +346,182 @@ state 8
 
 state 9
 
-    (30) expr -> LPAREN . expr RPAREN
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (8) declarations -> VAR . ID ASSIGN expr
+    (9) declarations -> VAR . ID ASSIGN relexpr
+    (10) declarations -> VAR . ID
 
-    ID              shift and go to state 11
-    NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    ID              shift and go to state 21
 
-    expr                           shift and go to state 21
 
 state 10
 
-    (9) declarations -> VAR . ID ASSIGN expr
-    (10) declarations -> VAR . ID ASSIGN relexpr
-    (11) declarations -> VAR . ID
+    (25) expr -> ID . ASSIGN expr
+    (28) expr -> ID .
 
-    ID              shift and go to state 22
+    ASSIGN          shift and go to state 22
+    PLUS            reduce using rule 28 (expr -> ID .)
+    MINUS           reduce using rule 28 (expr -> ID .)
+    TIMES           reduce using rule 28 (expr -> ID .)
+    DIVIDE          reduce using rule 28 (expr -> ID .)
+    MOD             reduce using rule 28 (expr -> ID .)
+    INCREMENT       reduce using rule 28 (expr -> ID .)
+    DECREMENT       reduce using rule 28 (expr -> ID .)
+    RPAREN          reduce using rule 28 (expr -> ID .)
+    AND             reduce using rule 28 (expr -> ID .)
+    OR              reduce using rule 28 (expr -> ID .)
+    END_LINE        reduce using rule 28 (expr -> ID .)
+    WRITE           reduce using rule 28 (expr -> ID .)
+    WHILE           reduce using rule 28 (expr -> ID .)
+    FOR             reduce using rule 28 (expr -> ID .)
+    IF              reduce using rule 28 (expr -> ID .)
+    VAR             reduce using rule 28 (expr -> ID .)
+    ID              reduce using rule 28 (expr -> ID .)
+    NUMBER          reduce using rule 28 (expr -> ID .)
+    STRINGS         reduce using rule 28 (expr -> ID .)
+    TRUE            reduce using rule 28 (expr -> ID .)
+    FALSE           reduce using rule 28 (expr -> ID .)
+    $end            reduce using rule 28 (expr -> ID .)
+    RBRACKET        reduce using rule 28 (expr -> ID .)
+    LT              reduce using rule 28 (expr -> ID .)
+    LE              reduce using rule 28 (expr -> ID .)
+    GT              reduce using rule 28 (expr -> ID .)
+    GE              reduce using rule 28 (expr -> ID .)
+    EQUALS          reduce using rule 28 (expr -> ID .)
+    NE              reduce using rule 28 (expr -> ID .)
 
 
 state 11
 
-    (26) expr -> ID . ASSIGN expr
-    (29) expr -> ID .
+    (15) command -> IF . LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> IF . LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> IF . LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
 
-    ASSIGN          shift and go to state 23
-    LT              reduce using rule 29 (expr -> ID .)
-    LE              reduce using rule 29 (expr -> ID .)
-    GT              reduce using rule 29 (expr -> ID .)
-    GE              reduce using rule 29 (expr -> ID .)
-    EQUALS          reduce using rule 29 (expr -> ID .)
-    NE              reduce using rule 29 (expr -> ID .)
-    PLUS            reduce using rule 29 (expr -> ID .)
-    MINUS           reduce using rule 29 (expr -> ID .)
-    TIMES           reduce using rule 29 (expr -> ID .)
-    DIVIDE          reduce using rule 29 (expr -> ID .)
-    MOD             reduce using rule 29 (expr -> ID .)
-    INCREMENT       reduce using rule 29 (expr -> ID .)
-    DECREMENT       reduce using rule 29 (expr -> ID .)
-    RPAREN          reduce using rule 29 (expr -> ID .)
-    END_LINE        reduce using rule 29 (expr -> ID .)
-    WRITE           reduce using rule 29 (expr -> ID .)
-    WHILE           reduce using rule 29 (expr -> ID .)
-    FOR             reduce using rule 29 (expr -> ID .)
-    IF              reduce using rule 29 (expr -> ID .)
-    VAR             reduce using rule 29 (expr -> ID .)
-    ID              reduce using rule 29 (expr -> ID .)
-    NUMBER          reduce using rule 29 (expr -> ID .)
-    STRINGS         reduce using rule 29 (expr -> ID .)
-    LPAREN          reduce using rule 29 (expr -> ID .)
-    AND             reduce using rule 29 (expr -> ID .)
-    OR              reduce using rule 29 (expr -> ID .)
+    LPAREN          shift and go to state 23
 
 
 state 12
 
-    (16) ifcommand -> IF . LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> IF . LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> IF . LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (30) expr -> FALSE .
 
-    LPAREN          shift and go to state 24
+    PLUS            reduce using rule 30 (expr -> FALSE .)
+    MINUS           reduce using rule 30 (expr -> FALSE .)
+    TIMES           reduce using rule 30 (expr -> FALSE .)
+    DIVIDE          reduce using rule 30 (expr -> FALSE .)
+    MOD             reduce using rule 30 (expr -> FALSE .)
+    INCREMENT       reduce using rule 30 (expr -> FALSE .)
+    DECREMENT       reduce using rule 30 (expr -> FALSE .)
+    RPAREN          reduce using rule 30 (expr -> FALSE .)
+    AND             reduce using rule 30 (expr -> FALSE .)
+    OR              reduce using rule 30 (expr -> FALSE .)
+    END_LINE        reduce using rule 30 (expr -> FALSE .)
+    WRITE           reduce using rule 30 (expr -> FALSE .)
+    WHILE           reduce using rule 30 (expr -> FALSE .)
+    FOR             reduce using rule 30 (expr -> FALSE .)
+    IF              reduce using rule 30 (expr -> FALSE .)
+    VAR             reduce using rule 30 (expr -> FALSE .)
+    ID              reduce using rule 30 (expr -> FALSE .)
+    NUMBER          reduce using rule 30 (expr -> FALSE .)
+    STRINGS         reduce using rule 30 (expr -> FALSE .)
+    TRUE            reduce using rule 30 (expr -> FALSE .)
+    FALSE           reduce using rule 30 (expr -> FALSE .)
+    $end            reduce using rule 30 (expr -> FALSE .)
+    RBRACKET        reduce using rule 30 (expr -> FALSE .)
+    LT              reduce using rule 30 (expr -> FALSE .)
+    LE              reduce using rule 30 (expr -> FALSE .)
+    GT              reduce using rule 30 (expr -> FALSE .)
+    GE              reduce using rule 30 (expr -> FALSE .)
+    EQUALS          reduce using rule 30 (expr -> FALSE .)
+    NE              reduce using rule 30 (expr -> FALSE .)
 
 
 state 13
 
-    (8) statement -> expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (7) statement -> expr .
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
-    END_LINE        reduce using rule 8 (statement -> expr .)
-    WRITE           reduce using rule 8 (statement -> expr .)
-    WHILE           reduce using rule 8 (statement -> expr .)
-    FOR             reduce using rule 8 (statement -> expr .)
-    IF              reduce using rule 8 (statement -> expr .)
-    VAR             reduce using rule 8 (statement -> expr .)
-    ID              reduce using rule 8 (statement -> expr .)
-    NUMBER          reduce using rule 8 (statement -> expr .)
-    STRINGS         reduce using rule 8 (statement -> expr .)
-    LPAREN          reduce using rule 8 (statement -> expr .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    END_LINE        reduce using rule 7 (statement -> expr .)
+    WRITE           reduce using rule 7 (statement -> expr .)
+    WHILE           reduce using rule 7 (statement -> expr .)
+    FOR             reduce using rule 7 (statement -> expr .)
+    IF              reduce using rule 7 (statement -> expr .)
+    VAR             reduce using rule 7 (statement -> expr .)
+    ID              reduce using rule 7 (statement -> expr .)
+    NUMBER          reduce using rule 7 (statement -> expr .)
+    STRINGS         reduce using rule 7 (statement -> expr .)
+    TRUE            reduce using rule 7 (statement -> expr .)
+    FALSE           reduce using rule 7 (statement -> expr .)
+    $end            reduce using rule 7 (statement -> expr .)
+    RBRACKET        reduce using rule 7 (statement -> expr .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
 
 state 14
 
-    (7) statement -> declarations .
+    (6) statement -> declarations .
 
-    END_LINE        reduce using rule 7 (statement -> declarations .)
-    WRITE           reduce using rule 7 (statement -> declarations .)
-    WHILE           reduce using rule 7 (statement -> declarations .)
-    FOR             reduce using rule 7 (statement -> declarations .)
-    IF              reduce using rule 7 (statement -> declarations .)
-    VAR             reduce using rule 7 (statement -> declarations .)
-    ID              reduce using rule 7 (statement -> declarations .)
-    NUMBER          reduce using rule 7 (statement -> declarations .)
-    STRINGS         reduce using rule 7 (statement -> declarations .)
-    LPAREN          reduce using rule 7 (statement -> declarations .)
+    END_LINE        reduce using rule 6 (statement -> declarations .)
+    WRITE           reduce using rule 6 (statement -> declarations .)
+    WHILE           reduce using rule 6 (statement -> declarations .)
+    FOR             reduce using rule 6 (statement -> declarations .)
+    IF              reduce using rule 6 (statement -> declarations .)
+    VAR             reduce using rule 6 (statement -> declarations .)
+    ID              reduce using rule 6 (statement -> declarations .)
+    NUMBER          reduce using rule 6 (statement -> declarations .)
+    STRINGS         reduce using rule 6 (statement -> declarations .)
+    TRUE            reduce using rule 6 (statement -> declarations .)
+    FALSE           reduce using rule 6 (statement -> declarations .)
+    $end            reduce using rule 6 (statement -> declarations .)
+    RBRACKET        reduce using rule 6 (statement -> declarations .)
 
 
 state 15
 
-    (4) S -> command .
-    (5) S -> command . END_LINE
+    (5) statement -> command .
 
-    RBRACKET        reduce using rule 4 (S -> command .)
-    $end            reduce using rule 4 (S -> command .)
-    END_LINE        shift and go to state 32
+    END_LINE        reduce using rule 5 (statement -> command .)
+    WRITE           reduce using rule 5 (statement -> command .)
+    WHILE           reduce using rule 5 (statement -> command .)
+    FOR             reduce using rule 5 (statement -> command .)
+    IF              reduce using rule 5 (statement -> command .)
+    VAR             reduce using rule 5 (statement -> command .)
+    ID              reduce using rule 5 (statement -> command .)
+    NUMBER          reduce using rule 5 (statement -> command .)
+    STRINGS         reduce using rule 5 (statement -> command .)
+    TRUE            reduce using rule 5 (statement -> command .)
+    FALSE           reduce using rule 5 (statement -> command .)
+    $end            reduce using rule 5 (statement -> command .)
+    RBRACKET        reduce using rule 5 (statement -> command .)
 
 
 state 16
 
-    (13) command -> WHILE LPAREN . expr RPAREN LBRACKET S RBRACKET
-    (14) command -> WHILE LPAREN . relexpr RPAREN LBRACKET S RBRACKET
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (12) command -> WHILE LPAREN . expr RPAREN LBRACKET S RBRACKET
+    (13) command -> WHILE LPAREN . relexpr RPAREN LBRACKET S RBRACKET
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
     (31) relexpr -> . expr LT expr
     (32) relexpr -> . expr LE expr
     (33) relexpr -> . expr GT expr
@@ -469,13 +529,14 @@ state 16
     (35) relexpr -> . expr EQUALS expr
     (36) relexpr -> . expr NE expr
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    expr                           shift and go to state 34
-    relexpr                        shift and go to state 33
+    expr                           shift and go to state 32
+    relexpr                        shift and go to state 31
 
 state 17
 
@@ -492,155 +553,141 @@ state 18
     (1) S -> . statement S
     (2) S -> . statement END_LINE S
     (3) S -> . statement END_LINE
-    (4) S -> . command
-    (5) S -> . command END_LINE
-    (6) S -> . ifcommand
-    (7) statement -> . declarations
-    (8) statement -> . expr
-    (12) command -> . WRITE LPAREN expr RPAREN
-    (13) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
-    (14) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
-    (15) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-    (16) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-    (9) declarations -> . VAR ID ASSIGN expr
-    (10) declarations -> . VAR ID ASSIGN relexpr
-    (11) declarations -> . VAR ID
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (4) S -> . statement
+    (5) statement -> . command
+    (6) statement -> . declarations
+    (7) statement -> . expr
+    (11) command -> . WRITE LPAREN expr RPAREN
+    (12) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (14) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (15) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (8) declarations -> . VAR ID ASSIGN expr
+    (9) declarations -> . VAR ID ASSIGN relexpr
+    (10) declarations -> . VAR ID
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
     RBRACKET        reduce using rule 3 (S -> statement END_LINE .)
     $end            reduce using rule 3 (S -> statement END_LINE .)
     WRITE           shift and go to state 7
     WHILE           shift and go to state 2
     FOR             shift and go to state 6
-    IF              shift and go to state 12
-    VAR             shift and go to state 10
-    ID              shift and go to state 11
+    IF              shift and go to state 11
+    VAR             shift and go to state 9
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    ifcommand                      shift and go to state 5
     expr                           shift and go to state 13
     declarations                   shift and go to state 14
-    S                              shift and go to state 35
+    S                              shift and go to state 33
     command                        shift and go to state 15
-    statement                      shift and go to state 4
+    statement                      shift and go to state 5
 
 state 19
 
-    (15) command -> FOR LPAREN . declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-    (9) declarations -> . VAR ID ASSIGN expr
-    (10) declarations -> . VAR ID ASSIGN relexpr
-    (11) declarations -> . VAR ID
+    (14) command -> FOR LPAREN . declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (8) declarations -> . VAR ID ASSIGN expr
+    (9) declarations -> . VAR ID ASSIGN relexpr
+    (10) declarations -> . VAR ID
 
-    VAR             shift and go to state 10
+    VAR             shift and go to state 9
 
-    declarations                   shift and go to state 36
+    declarations                   shift and go to state 34
 
 state 20
 
-    (12) command -> WRITE LPAREN . expr RPAREN
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (11) command -> WRITE LPAREN . expr RPAREN
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    expr                           shift and go to state 37
+    expr                           shift and go to state 35
 
 state 21
 
-    (30) expr -> LPAREN expr . RPAREN
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (8) declarations -> VAR ID . ASSIGN expr
+    (9) declarations -> VAR ID . ASSIGN relexpr
+    (10) declarations -> VAR ID .
 
-    RPAREN          shift and go to state 38
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    ASSIGN          shift and go to state 36
+    END_LINE        reduce using rule 10 (declarations -> VAR ID .)
+    WRITE           reduce using rule 10 (declarations -> VAR ID .)
+    WHILE           reduce using rule 10 (declarations -> VAR ID .)
+    FOR             reduce using rule 10 (declarations -> VAR ID .)
+    IF              reduce using rule 10 (declarations -> VAR ID .)
+    VAR             reduce using rule 10 (declarations -> VAR ID .)
+    ID              reduce using rule 10 (declarations -> VAR ID .)
+    NUMBER          reduce using rule 10 (declarations -> VAR ID .)
+    STRINGS         reduce using rule 10 (declarations -> VAR ID .)
+    TRUE            reduce using rule 10 (declarations -> VAR ID .)
+    FALSE           reduce using rule 10 (declarations -> VAR ID .)
+    $end            reduce using rule 10 (declarations -> VAR ID .)
+    RBRACKET        reduce using rule 10 (declarations -> VAR ID .)
 
 
 state 22
 
-    (9) declarations -> VAR ID . ASSIGN expr
-    (10) declarations -> VAR ID . ASSIGN relexpr
-    (11) declarations -> VAR ID .
+    (25) expr -> ID ASSIGN . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ASSIGN          shift and go to state 39
-    END_LINE        reduce using rule 11 (declarations -> VAR ID .)
-    WRITE           reduce using rule 11 (declarations -> VAR ID .)
-    WHILE           reduce using rule 11 (declarations -> VAR ID .)
-    FOR             reduce using rule 11 (declarations -> VAR ID .)
-    IF              reduce using rule 11 (declarations -> VAR ID .)
-    VAR             reduce using rule 11 (declarations -> VAR ID .)
-    ID              reduce using rule 11 (declarations -> VAR ID .)
-    NUMBER          reduce using rule 11 (declarations -> VAR ID .)
-    STRINGS         reduce using rule 11 (declarations -> VAR ID .)
-    LPAREN          reduce using rule 11 (declarations -> VAR ID .)
+    ID              shift and go to state 10
+    NUMBER          shift and go to state 1
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
+    expr                           shift and go to state 37
 
 state 23
 
-    (26) expr -> ID ASSIGN . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
-
-    ID              shift and go to state 11
-    NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
-
-    expr                           shift and go to state 40
-
-state 24
-
-    (16) ifcommand -> IF LPAREN . relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> IF LPAREN . relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> IF LPAREN . relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (15) command -> IF LPAREN . relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> IF LPAREN . relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> IF LPAREN . relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
     (37) relexprgroup -> . relexpr AND relexprgroup
     (38) relexprgroup -> . relexpr OR relexprgroup
     (39) relexprgroup -> . relexpr
@@ -651,232 +698,242 @@ state 24
     (34) relexpr -> . expr GE expr
     (35) relexpr -> . expr EQUALS expr
     (36) relexpr -> . expr NE expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    relexprgroup                   shift and go to state 41
-    relexpr                        shift and go to state 42
-    expr                           shift and go to state 43
+    relexprgroup                   shift and go to state 38
+    relexpr                        shift and go to state 39
+    expr                           shift and go to state 40
+
+state 24
+
+    (21) expr -> expr DIVIDE . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
+
+    ID              shift and go to state 10
+    NUMBER          shift and go to state 1
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
+
+    expr                           shift and go to state 41
 
 state 25
 
-    (22) expr -> expr DIVIDE . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (20) expr -> expr TIMES . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    expr                           shift and go to state 44
+    expr                           shift and go to state 42
 
 state 26
 
-    (21) expr -> expr TIMES . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (18) expr -> expr PLUS . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    expr                           shift and go to state 45
+    expr                           shift and go to state 43
 
 state 27
 
-    (19) expr -> expr PLUS . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (23) expr -> expr INCREMENT .
 
-    ID              shift and go to state 11
-    NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    PLUS            reduce using rule 23 (expr -> expr INCREMENT .)
+    MINUS           reduce using rule 23 (expr -> expr INCREMENT .)
+    TIMES           reduce using rule 23 (expr -> expr INCREMENT .)
+    DIVIDE          reduce using rule 23 (expr -> expr INCREMENT .)
+    MOD             reduce using rule 23 (expr -> expr INCREMENT .)
+    INCREMENT       reduce using rule 23 (expr -> expr INCREMENT .)
+    DECREMENT       reduce using rule 23 (expr -> expr INCREMENT .)
+    RPAREN          reduce using rule 23 (expr -> expr INCREMENT .)
+    AND             reduce using rule 23 (expr -> expr INCREMENT .)
+    OR              reduce using rule 23 (expr -> expr INCREMENT .)
+    END_LINE        reduce using rule 23 (expr -> expr INCREMENT .)
+    WRITE           reduce using rule 23 (expr -> expr INCREMENT .)
+    WHILE           reduce using rule 23 (expr -> expr INCREMENT .)
+    FOR             reduce using rule 23 (expr -> expr INCREMENT .)
+    IF              reduce using rule 23 (expr -> expr INCREMENT .)
+    VAR             reduce using rule 23 (expr -> expr INCREMENT .)
+    ID              reduce using rule 23 (expr -> expr INCREMENT .)
+    NUMBER          reduce using rule 23 (expr -> expr INCREMENT .)
+    STRINGS         reduce using rule 23 (expr -> expr INCREMENT .)
+    TRUE            reduce using rule 23 (expr -> expr INCREMENT .)
+    FALSE           reduce using rule 23 (expr -> expr INCREMENT .)
+    $end            reduce using rule 23 (expr -> expr INCREMENT .)
+    RBRACKET        reduce using rule 23 (expr -> expr INCREMENT .)
+    LT              reduce using rule 23 (expr -> expr INCREMENT .)
+    LE              reduce using rule 23 (expr -> expr INCREMENT .)
+    GT              reduce using rule 23 (expr -> expr INCREMENT .)
+    GE              reduce using rule 23 (expr -> expr INCREMENT .)
+    EQUALS          reduce using rule 23 (expr -> expr INCREMENT .)
+    NE              reduce using rule 23 (expr -> expr INCREMENT .)
 
-    expr                           shift and go to state 46
 
 state 28
 
-    (24) expr -> expr INCREMENT .
+    (24) expr -> expr DECREMENT .
 
-    LT              reduce using rule 24 (expr -> expr INCREMENT .)
-    LE              reduce using rule 24 (expr -> expr INCREMENT .)
-    GT              reduce using rule 24 (expr -> expr INCREMENT .)
-    GE              reduce using rule 24 (expr -> expr INCREMENT .)
-    EQUALS          reduce using rule 24 (expr -> expr INCREMENT .)
-    NE              reduce using rule 24 (expr -> expr INCREMENT .)
-    PLUS            reduce using rule 24 (expr -> expr INCREMENT .)
-    MINUS           reduce using rule 24 (expr -> expr INCREMENT .)
-    TIMES           reduce using rule 24 (expr -> expr INCREMENT .)
-    DIVIDE          reduce using rule 24 (expr -> expr INCREMENT .)
-    MOD             reduce using rule 24 (expr -> expr INCREMENT .)
-    INCREMENT       reduce using rule 24 (expr -> expr INCREMENT .)
-    DECREMENT       reduce using rule 24 (expr -> expr INCREMENT .)
-    RPAREN          reduce using rule 24 (expr -> expr INCREMENT .)
-    END_LINE        reduce using rule 24 (expr -> expr INCREMENT .)
-    WRITE           reduce using rule 24 (expr -> expr INCREMENT .)
-    WHILE           reduce using rule 24 (expr -> expr INCREMENT .)
-    FOR             reduce using rule 24 (expr -> expr INCREMENT .)
-    IF              reduce using rule 24 (expr -> expr INCREMENT .)
-    VAR             reduce using rule 24 (expr -> expr INCREMENT .)
-    ID              reduce using rule 24 (expr -> expr INCREMENT .)
-    NUMBER          reduce using rule 24 (expr -> expr INCREMENT .)
-    STRINGS         reduce using rule 24 (expr -> expr INCREMENT .)
-    LPAREN          reduce using rule 24 (expr -> expr INCREMENT .)
-    AND             reduce using rule 24 (expr -> expr INCREMENT .)
-    OR              reduce using rule 24 (expr -> expr INCREMENT .)
+    PLUS            reduce using rule 24 (expr -> expr DECREMENT .)
+    MINUS           reduce using rule 24 (expr -> expr DECREMENT .)
+    TIMES           reduce using rule 24 (expr -> expr DECREMENT .)
+    DIVIDE          reduce using rule 24 (expr -> expr DECREMENT .)
+    MOD             reduce using rule 24 (expr -> expr DECREMENT .)
+    INCREMENT       reduce using rule 24 (expr -> expr DECREMENT .)
+    DECREMENT       reduce using rule 24 (expr -> expr DECREMENT .)
+    RPAREN          reduce using rule 24 (expr -> expr DECREMENT .)
+    AND             reduce using rule 24 (expr -> expr DECREMENT .)
+    OR              reduce using rule 24 (expr -> expr DECREMENT .)
+    END_LINE        reduce using rule 24 (expr -> expr DECREMENT .)
+    WRITE           reduce using rule 24 (expr -> expr DECREMENT .)
+    WHILE           reduce using rule 24 (expr -> expr DECREMENT .)
+    FOR             reduce using rule 24 (expr -> expr DECREMENT .)
+    IF              reduce using rule 24 (expr -> expr DECREMENT .)
+    VAR             reduce using rule 24 (expr -> expr DECREMENT .)
+    ID              reduce using rule 24 (expr -> expr DECREMENT .)
+    NUMBER          reduce using rule 24 (expr -> expr DECREMENT .)
+    STRINGS         reduce using rule 24 (expr -> expr DECREMENT .)
+    TRUE            reduce using rule 24 (expr -> expr DECREMENT .)
+    FALSE           reduce using rule 24 (expr -> expr DECREMENT .)
+    $end            reduce using rule 24 (expr -> expr DECREMENT .)
+    RBRACKET        reduce using rule 24 (expr -> expr DECREMENT .)
+    LT              reduce using rule 24 (expr -> expr DECREMENT .)
+    LE              reduce using rule 24 (expr -> expr DECREMENT .)
+    GT              reduce using rule 24 (expr -> expr DECREMENT .)
+    GE              reduce using rule 24 (expr -> expr DECREMENT .)
+    EQUALS          reduce using rule 24 (expr -> expr DECREMENT .)
+    NE              reduce using rule 24 (expr -> expr DECREMENT .)
 
 
 state 29
 
-    (25) expr -> expr DECREMENT .
+    (19) expr -> expr MINUS . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    LT              reduce using rule 25 (expr -> expr DECREMENT .)
-    LE              reduce using rule 25 (expr -> expr DECREMENT .)
-    GT              reduce using rule 25 (expr -> expr DECREMENT .)
-    GE              reduce using rule 25 (expr -> expr DECREMENT .)
-    EQUALS          reduce using rule 25 (expr -> expr DECREMENT .)
-    NE              reduce using rule 25 (expr -> expr DECREMENT .)
-    PLUS            reduce using rule 25 (expr -> expr DECREMENT .)
-    MINUS           reduce using rule 25 (expr -> expr DECREMENT .)
-    TIMES           reduce using rule 25 (expr -> expr DECREMENT .)
-    DIVIDE          reduce using rule 25 (expr -> expr DECREMENT .)
-    MOD             reduce using rule 25 (expr -> expr DECREMENT .)
-    INCREMENT       reduce using rule 25 (expr -> expr DECREMENT .)
-    DECREMENT       reduce using rule 25 (expr -> expr DECREMENT .)
-    RPAREN          reduce using rule 25 (expr -> expr DECREMENT .)
-    END_LINE        reduce using rule 25 (expr -> expr DECREMENT .)
-    WRITE           reduce using rule 25 (expr -> expr DECREMENT .)
-    WHILE           reduce using rule 25 (expr -> expr DECREMENT .)
-    FOR             reduce using rule 25 (expr -> expr DECREMENT .)
-    IF              reduce using rule 25 (expr -> expr DECREMENT .)
-    VAR             reduce using rule 25 (expr -> expr DECREMENT .)
-    ID              reduce using rule 25 (expr -> expr DECREMENT .)
-    NUMBER          reduce using rule 25 (expr -> expr DECREMENT .)
-    STRINGS         reduce using rule 25 (expr -> expr DECREMENT .)
-    LPAREN          reduce using rule 25 (expr -> expr DECREMENT .)
-    AND             reduce using rule 25 (expr -> expr DECREMENT .)
-    OR              reduce using rule 25 (expr -> expr DECREMENT .)
+    ID              shift and go to state 10
+    NUMBER          shift and go to state 1
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
+    expr                           shift and go to state 44
 
 state 30
 
-    (20) expr -> expr MINUS . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (22) expr -> expr MOD . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    expr                           shift and go to state 47
+    expr                           shift and go to state 45
 
 state 31
 
-    (23) expr -> expr MOD . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (13) command -> WHILE LPAREN relexpr . RPAREN LBRACKET S RBRACKET
 
-    ID              shift and go to state 11
-    NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    RPAREN          shift and go to state 46
 
-    expr                           shift and go to state 48
 
 state 32
 
-    (5) S -> command END_LINE .
-
-    RBRACKET        reduce using rule 5 (S -> command END_LINE .)
-    $end            reduce using rule 5 (S -> command END_LINE .)
-
-
-state 33
-
-    (14) command -> WHILE LPAREN relexpr . RPAREN LBRACKET S RBRACKET
-
-    RPAREN          shift and go to state 49
-
-
-state 34
-
-    (13) command -> WHILE LPAREN expr . RPAREN LBRACKET S RBRACKET
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (12) command -> WHILE LPAREN expr . RPAREN LBRACKET S RBRACKET
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
     (31) relexpr -> expr . LT expr
     (32) relexpr -> expr . LE expr
     (33) relexpr -> expr . GT expr
@@ -884,23 +941,23 @@ state 34
     (35) relexpr -> expr . EQUALS expr
     (36) relexpr -> expr . NE expr
 
-    RPAREN          shift and go to state 52
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
-    LT              shift and go to state 53
-    LE              shift and go to state 54
-    GT              shift and go to state 51
-    GE              shift and go to state 55
-    EQUALS          shift and go to state 50
-    NE              shift and go to state 56
+    RPAREN          shift and go to state 49
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
+    LT              shift and go to state 50
+    LE              shift and go to state 51
+    GT              shift and go to state 48
+    GE              shift and go to state 52
+    EQUALS          shift and go to state 47
+    NE              shift and go to state 53
 
 
-state 35
+state 33
 
     (2) S -> statement END_LINE S .
 
@@ -908,82 +965,51 @@ state 35
     $end            reduce using rule 2 (S -> statement END_LINE S .)
 
 
+state 34
+
+    (14) command -> FOR LPAREN declarations . END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+
+    END_LINE        shift and go to state 54
+
+
+state 35
+
+    (11) command -> WRITE LPAREN expr . RPAREN
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
+
+    RPAREN          shift and go to state 55
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
+
+
 state 36
 
-    (15) command -> FOR LPAREN declarations . END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-
-    END_LINE        shift and go to state 57
-
-
-state 37
-
-    (12) command -> WRITE LPAREN expr . RPAREN
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
-
-    RPAREN          shift and go to state 58
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
-
-
-state 38
-
-    (30) expr -> LPAREN expr RPAREN .
-
-    LT              reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    LE              reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    GT              reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    GE              reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    EQUALS          reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    NE              reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    PLUS            reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    MINUS           reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    TIMES           reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    DIVIDE          reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    MOD             reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    INCREMENT       reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    DECREMENT       reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    RPAREN          reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    END_LINE        reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    WRITE           reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    WHILE           reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    FOR             reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    IF              reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    VAR             reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    ID              reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    NUMBER          reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    STRINGS         reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    LPAREN          reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    AND             reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-    OR              reduce using rule 30 (expr -> LPAREN expr RPAREN .)
-
-
-state 39
-
-    (9) declarations -> VAR ID ASSIGN . expr
-    (10) declarations -> VAR ID ASSIGN . relexpr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (8) declarations -> VAR ID ASSIGN . expr
+    (9) declarations -> VAR ID ASSIGN . relexpr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
     (31) relexpr -> . expr LT expr
     (32) relexpr -> . expr LE expr
     (33) relexpr -> . expr GT expr
@@ -991,82 +1017,86 @@ state 39
     (35) relexpr -> . expr EQUALS expr
     (36) relexpr -> . expr NE expr
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    expr                           shift and go to state 60
-    relexpr                        shift and go to state 59
+    expr                           shift and go to state 57
+    relexpr                        shift and go to state 56
 
-state 40
+state 37
 
-    (26) expr -> ID ASSIGN expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (25) expr -> ID ASSIGN expr .
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
-    LT              reduce using rule 26 (expr -> ID ASSIGN expr .)
-    LE              reduce using rule 26 (expr -> ID ASSIGN expr .)
-    GT              reduce using rule 26 (expr -> ID ASSIGN expr .)
-    GE              reduce using rule 26 (expr -> ID ASSIGN expr .)
-    EQUALS          reduce using rule 26 (expr -> ID ASSIGN expr .)
-    NE              reduce using rule 26 (expr -> ID ASSIGN expr .)
-    RPAREN          reduce using rule 26 (expr -> ID ASSIGN expr .)
-    END_LINE        reduce using rule 26 (expr -> ID ASSIGN expr .)
-    WRITE           reduce using rule 26 (expr -> ID ASSIGN expr .)
-    WHILE           reduce using rule 26 (expr -> ID ASSIGN expr .)
-    FOR             reduce using rule 26 (expr -> ID ASSIGN expr .)
-    IF              reduce using rule 26 (expr -> ID ASSIGN expr .)
-    VAR             reduce using rule 26 (expr -> ID ASSIGN expr .)
-    ID              reduce using rule 26 (expr -> ID ASSIGN expr .)
-    NUMBER          reduce using rule 26 (expr -> ID ASSIGN expr .)
-    STRINGS         reduce using rule 26 (expr -> ID ASSIGN expr .)
-    LPAREN          reduce using rule 26 (expr -> ID ASSIGN expr .)
-    AND             reduce using rule 26 (expr -> ID ASSIGN expr .)
-    OR              reduce using rule 26 (expr -> ID ASSIGN expr .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    RPAREN          reduce using rule 25 (expr -> ID ASSIGN expr .)
+    AND             reduce using rule 25 (expr -> ID ASSIGN expr .)
+    OR              reduce using rule 25 (expr -> ID ASSIGN expr .)
+    END_LINE        reduce using rule 25 (expr -> ID ASSIGN expr .)
+    WRITE           reduce using rule 25 (expr -> ID ASSIGN expr .)
+    WHILE           reduce using rule 25 (expr -> ID ASSIGN expr .)
+    FOR             reduce using rule 25 (expr -> ID ASSIGN expr .)
+    IF              reduce using rule 25 (expr -> ID ASSIGN expr .)
+    VAR             reduce using rule 25 (expr -> ID ASSIGN expr .)
+    ID              reduce using rule 25 (expr -> ID ASSIGN expr .)
+    NUMBER          reduce using rule 25 (expr -> ID ASSIGN expr .)
+    STRINGS         reduce using rule 25 (expr -> ID ASSIGN expr .)
+    TRUE            reduce using rule 25 (expr -> ID ASSIGN expr .)
+    FALSE           reduce using rule 25 (expr -> ID ASSIGN expr .)
+    $end            reduce using rule 25 (expr -> ID ASSIGN expr .)
+    RBRACKET        reduce using rule 25 (expr -> ID ASSIGN expr .)
+    LT              reduce using rule 25 (expr -> ID ASSIGN expr .)
+    LE              reduce using rule 25 (expr -> ID ASSIGN expr .)
+    GT              reduce using rule 25 (expr -> ID ASSIGN expr .)
+    GE              reduce using rule 25 (expr -> ID ASSIGN expr .)
+    EQUALS          reduce using rule 25 (expr -> ID ASSIGN expr .)
+    NE              reduce using rule 25 (expr -> ID ASSIGN expr .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
-  ! PLUS            [ reduce using rule 26 (expr -> ID ASSIGN expr .) ]
-  ! MINUS           [ reduce using rule 26 (expr -> ID ASSIGN expr .) ]
-  ! TIMES           [ reduce using rule 26 (expr -> ID ASSIGN expr .) ]
-  ! DIVIDE          [ reduce using rule 26 (expr -> ID ASSIGN expr .) ]
-  ! MOD             [ reduce using rule 26 (expr -> ID ASSIGN expr .) ]
-  ! INCREMENT       [ reduce using rule 26 (expr -> ID ASSIGN expr .) ]
-  ! DECREMENT       [ reduce using rule 26 (expr -> ID ASSIGN expr .) ]
-
-
-state 41
-
-    (16) ifcommand -> IF LPAREN relexprgroup . RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> IF LPAREN relexprgroup . RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> IF LPAREN relexprgroup . RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-
-    RPAREN          shift and go to state 61
+  ! PLUS            [ reduce using rule 25 (expr -> ID ASSIGN expr .) ]
+  ! MINUS           [ reduce using rule 25 (expr -> ID ASSIGN expr .) ]
+  ! TIMES           [ reduce using rule 25 (expr -> ID ASSIGN expr .) ]
+  ! DIVIDE          [ reduce using rule 25 (expr -> ID ASSIGN expr .) ]
+  ! MOD             [ reduce using rule 25 (expr -> ID ASSIGN expr .) ]
+  ! INCREMENT       [ reduce using rule 25 (expr -> ID ASSIGN expr .) ]
+  ! DECREMENT       [ reduce using rule 25 (expr -> ID ASSIGN expr .) ]
 
 
-state 42
+state 38
+
+    (15) command -> IF LPAREN relexprgroup . RPAREN LBRACKET S RBRACKET
+    (16) command -> IF LPAREN relexprgroup . RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> IF LPAREN relexprgroup . RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+
+    RPAREN          shift and go to state 58
+
+
+state 39
 
     (37) relexprgroup -> relexpr . AND relexprgroup
     (38) relexprgroup -> relexpr . OR relexprgroup
     (39) relexprgroup -> relexpr .
 
-    AND             shift and go to state 62
-    OR              shift and go to state 63
+    AND             shift and go to state 59
+    OR              shift and go to state 60
     RPAREN          reduce using rule 39 (relexprgroup -> relexpr .)
 
 
-state 43
+state 40
 
     (40) relexprgroup -> expr .
     (31) relexpr -> expr . LT expr
@@ -1075,482 +1105,524 @@ state 43
     (34) relexpr -> expr . GE expr
     (35) relexpr -> expr . EQUALS expr
     (36) relexpr -> expr . NE expr
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
     RPAREN          reduce using rule 40 (relexprgroup -> expr .)
-    LT              shift and go to state 53
-    LE              shift and go to state 54
-    GT              shift and go to state 51
-    GE              shift and go to state 55
-    EQUALS          shift and go to state 50
-    NE              shift and go to state 56
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    LT              shift and go to state 50
+    LE              shift and go to state 51
+    GT              shift and go to state 48
+    GE              shift and go to state 52
+    EQUALS          shift and go to state 47
+    NE              shift and go to state 53
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
+
+
+state 41
+
+    (21) expr -> expr DIVIDE expr .
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
+
+    PLUS            reduce using rule 21 (expr -> expr DIVIDE expr .)
+    MINUS           reduce using rule 21 (expr -> expr DIVIDE expr .)
+    TIMES           reduce using rule 21 (expr -> expr DIVIDE expr .)
+    DIVIDE          reduce using rule 21 (expr -> expr DIVIDE expr .)
+    MOD             reduce using rule 21 (expr -> expr DIVIDE expr .)
+    RPAREN          reduce using rule 21 (expr -> expr DIVIDE expr .)
+    AND             reduce using rule 21 (expr -> expr DIVIDE expr .)
+    OR              reduce using rule 21 (expr -> expr DIVIDE expr .)
+    END_LINE        reduce using rule 21 (expr -> expr DIVIDE expr .)
+    WRITE           reduce using rule 21 (expr -> expr DIVIDE expr .)
+    WHILE           reduce using rule 21 (expr -> expr DIVIDE expr .)
+    FOR             reduce using rule 21 (expr -> expr DIVIDE expr .)
+    IF              reduce using rule 21 (expr -> expr DIVIDE expr .)
+    VAR             reduce using rule 21 (expr -> expr DIVIDE expr .)
+    ID              reduce using rule 21 (expr -> expr DIVIDE expr .)
+    NUMBER          reduce using rule 21 (expr -> expr DIVIDE expr .)
+    STRINGS         reduce using rule 21 (expr -> expr DIVIDE expr .)
+    TRUE            reduce using rule 21 (expr -> expr DIVIDE expr .)
+    FALSE           reduce using rule 21 (expr -> expr DIVIDE expr .)
+    $end            reduce using rule 21 (expr -> expr DIVIDE expr .)
+    RBRACKET        reduce using rule 21 (expr -> expr DIVIDE expr .)
+    LT              reduce using rule 21 (expr -> expr DIVIDE expr .)
+    LE              reduce using rule 21 (expr -> expr DIVIDE expr .)
+    GT              reduce using rule 21 (expr -> expr DIVIDE expr .)
+    GE              reduce using rule 21 (expr -> expr DIVIDE expr .)
+    EQUALS          reduce using rule 21 (expr -> expr DIVIDE expr .)
+    NE              reduce using rule 21 (expr -> expr DIVIDE expr .)
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
+
+  ! INCREMENT       [ reduce using rule 21 (expr -> expr DIVIDE expr .) ]
+  ! DECREMENT       [ reduce using rule 21 (expr -> expr DIVIDE expr .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 29 ]
+  ! TIMES           [ shift and go to state 25 ]
+  ! DIVIDE          [ shift and go to state 24 ]
+  ! MOD             [ shift and go to state 30 ]
+
+
+state 42
+
+    (20) expr -> expr TIMES expr .
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
+
+    PLUS            reduce using rule 20 (expr -> expr TIMES expr .)
+    MINUS           reduce using rule 20 (expr -> expr TIMES expr .)
+    TIMES           reduce using rule 20 (expr -> expr TIMES expr .)
+    DIVIDE          reduce using rule 20 (expr -> expr TIMES expr .)
+    MOD             reduce using rule 20 (expr -> expr TIMES expr .)
+    RPAREN          reduce using rule 20 (expr -> expr TIMES expr .)
+    AND             reduce using rule 20 (expr -> expr TIMES expr .)
+    OR              reduce using rule 20 (expr -> expr TIMES expr .)
+    END_LINE        reduce using rule 20 (expr -> expr TIMES expr .)
+    WRITE           reduce using rule 20 (expr -> expr TIMES expr .)
+    WHILE           reduce using rule 20 (expr -> expr TIMES expr .)
+    FOR             reduce using rule 20 (expr -> expr TIMES expr .)
+    IF              reduce using rule 20 (expr -> expr TIMES expr .)
+    VAR             reduce using rule 20 (expr -> expr TIMES expr .)
+    ID              reduce using rule 20 (expr -> expr TIMES expr .)
+    NUMBER          reduce using rule 20 (expr -> expr TIMES expr .)
+    STRINGS         reduce using rule 20 (expr -> expr TIMES expr .)
+    TRUE            reduce using rule 20 (expr -> expr TIMES expr .)
+    FALSE           reduce using rule 20 (expr -> expr TIMES expr .)
+    $end            reduce using rule 20 (expr -> expr TIMES expr .)
+    RBRACKET        reduce using rule 20 (expr -> expr TIMES expr .)
+    LT              reduce using rule 20 (expr -> expr TIMES expr .)
+    LE              reduce using rule 20 (expr -> expr TIMES expr .)
+    GT              reduce using rule 20 (expr -> expr TIMES expr .)
+    GE              reduce using rule 20 (expr -> expr TIMES expr .)
+    EQUALS          reduce using rule 20 (expr -> expr TIMES expr .)
+    NE              reduce using rule 20 (expr -> expr TIMES expr .)
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
+
+  ! INCREMENT       [ reduce using rule 20 (expr -> expr TIMES expr .) ]
+  ! DECREMENT       [ reduce using rule 20 (expr -> expr TIMES expr .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 29 ]
+  ! TIMES           [ shift and go to state 25 ]
+  ! DIVIDE          [ shift and go to state 24 ]
+  ! MOD             [ shift and go to state 30 ]
+
+
+state 43
+
+    (18) expr -> expr PLUS expr .
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
+
+    PLUS            reduce using rule 18 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 18 (expr -> expr PLUS expr .)
+    RPAREN          reduce using rule 18 (expr -> expr PLUS expr .)
+    AND             reduce using rule 18 (expr -> expr PLUS expr .)
+    OR              reduce using rule 18 (expr -> expr PLUS expr .)
+    END_LINE        reduce using rule 18 (expr -> expr PLUS expr .)
+    WRITE           reduce using rule 18 (expr -> expr PLUS expr .)
+    WHILE           reduce using rule 18 (expr -> expr PLUS expr .)
+    FOR             reduce using rule 18 (expr -> expr PLUS expr .)
+    IF              reduce using rule 18 (expr -> expr PLUS expr .)
+    VAR             reduce using rule 18 (expr -> expr PLUS expr .)
+    ID              reduce using rule 18 (expr -> expr PLUS expr .)
+    NUMBER          reduce using rule 18 (expr -> expr PLUS expr .)
+    STRINGS         reduce using rule 18 (expr -> expr PLUS expr .)
+    TRUE            reduce using rule 18 (expr -> expr PLUS expr .)
+    FALSE           reduce using rule 18 (expr -> expr PLUS expr .)
+    $end            reduce using rule 18 (expr -> expr PLUS expr .)
+    RBRACKET        reduce using rule 18 (expr -> expr PLUS expr .)
+    LT              reduce using rule 18 (expr -> expr PLUS expr .)
+    LE              reduce using rule 18 (expr -> expr PLUS expr .)
+    GT              reduce using rule 18 (expr -> expr PLUS expr .)
+    GE              reduce using rule 18 (expr -> expr PLUS expr .)
+    EQUALS          reduce using rule 18 (expr -> expr PLUS expr .)
+    NE              reduce using rule 18 (expr -> expr PLUS expr .)
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
+
+  ! TIMES           [ reduce using rule 18 (expr -> expr PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 18 (expr -> expr PLUS expr .) ]
+  ! MOD             [ reduce using rule 18 (expr -> expr PLUS expr .) ]
+  ! INCREMENT       [ reduce using rule 18 (expr -> expr PLUS expr .) ]
+  ! DECREMENT       [ reduce using rule 18 (expr -> expr PLUS expr .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 29 ]
 
 
 state 44
 
-    (22) expr -> expr DIVIDE expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (19) expr -> expr MINUS expr .
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
-    LT              reduce using rule 22 (expr -> expr DIVIDE expr .)
-    LE              reduce using rule 22 (expr -> expr DIVIDE expr .)
-    GT              reduce using rule 22 (expr -> expr DIVIDE expr .)
-    GE              reduce using rule 22 (expr -> expr DIVIDE expr .)
-    EQUALS          reduce using rule 22 (expr -> expr DIVIDE expr .)
-    NE              reduce using rule 22 (expr -> expr DIVIDE expr .)
-    PLUS            reduce using rule 22 (expr -> expr DIVIDE expr .)
-    MINUS           reduce using rule 22 (expr -> expr DIVIDE expr .)
-    TIMES           reduce using rule 22 (expr -> expr DIVIDE expr .)
-    DIVIDE          reduce using rule 22 (expr -> expr DIVIDE expr .)
-    MOD             reduce using rule 22 (expr -> expr DIVIDE expr .)
-    RPAREN          reduce using rule 22 (expr -> expr DIVIDE expr .)
-    END_LINE        reduce using rule 22 (expr -> expr DIVIDE expr .)
-    WRITE           reduce using rule 22 (expr -> expr DIVIDE expr .)
-    WHILE           reduce using rule 22 (expr -> expr DIVIDE expr .)
-    FOR             reduce using rule 22 (expr -> expr DIVIDE expr .)
-    IF              reduce using rule 22 (expr -> expr DIVIDE expr .)
-    VAR             reduce using rule 22 (expr -> expr DIVIDE expr .)
-    ID              reduce using rule 22 (expr -> expr DIVIDE expr .)
-    NUMBER          reduce using rule 22 (expr -> expr DIVIDE expr .)
-    STRINGS         reduce using rule 22 (expr -> expr DIVIDE expr .)
-    LPAREN          reduce using rule 22 (expr -> expr DIVIDE expr .)
-    AND             reduce using rule 22 (expr -> expr DIVIDE expr .)
-    OR              reduce using rule 22 (expr -> expr DIVIDE expr .)
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    PLUS            reduce using rule 19 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 19 (expr -> expr MINUS expr .)
+    RPAREN          reduce using rule 19 (expr -> expr MINUS expr .)
+    AND             reduce using rule 19 (expr -> expr MINUS expr .)
+    OR              reduce using rule 19 (expr -> expr MINUS expr .)
+    END_LINE        reduce using rule 19 (expr -> expr MINUS expr .)
+    WRITE           reduce using rule 19 (expr -> expr MINUS expr .)
+    WHILE           reduce using rule 19 (expr -> expr MINUS expr .)
+    FOR             reduce using rule 19 (expr -> expr MINUS expr .)
+    IF              reduce using rule 19 (expr -> expr MINUS expr .)
+    VAR             reduce using rule 19 (expr -> expr MINUS expr .)
+    ID              reduce using rule 19 (expr -> expr MINUS expr .)
+    NUMBER          reduce using rule 19 (expr -> expr MINUS expr .)
+    STRINGS         reduce using rule 19 (expr -> expr MINUS expr .)
+    TRUE            reduce using rule 19 (expr -> expr MINUS expr .)
+    FALSE           reduce using rule 19 (expr -> expr MINUS expr .)
+    $end            reduce using rule 19 (expr -> expr MINUS expr .)
+    RBRACKET        reduce using rule 19 (expr -> expr MINUS expr .)
+    LT              reduce using rule 19 (expr -> expr MINUS expr .)
+    LE              reduce using rule 19 (expr -> expr MINUS expr .)
+    GT              reduce using rule 19 (expr -> expr MINUS expr .)
+    GE              reduce using rule 19 (expr -> expr MINUS expr .)
+    EQUALS          reduce using rule 19 (expr -> expr MINUS expr .)
+    NE              reduce using rule 19 (expr -> expr MINUS expr .)
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
-  ! INCREMENT       [ reduce using rule 22 (expr -> expr DIVIDE expr .) ]
-  ! DECREMENT       [ reduce using rule 22 (expr -> expr DIVIDE expr .) ]
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 30 ]
-  ! TIMES           [ shift and go to state 26 ]
-  ! DIVIDE          [ shift and go to state 25 ]
-  ! MOD             [ shift and go to state 31 ]
+  ! TIMES           [ reduce using rule 19 (expr -> expr MINUS expr .) ]
+  ! DIVIDE          [ reduce using rule 19 (expr -> expr MINUS expr .) ]
+  ! MOD             [ reduce using rule 19 (expr -> expr MINUS expr .) ]
+  ! INCREMENT       [ reduce using rule 19 (expr -> expr MINUS expr .) ]
+  ! DECREMENT       [ reduce using rule 19 (expr -> expr MINUS expr .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 29 ]
 
 
 state 45
 
-    (21) expr -> expr TIMES expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (22) expr -> expr MOD expr .
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
-    LT              reduce using rule 21 (expr -> expr TIMES expr .)
-    LE              reduce using rule 21 (expr -> expr TIMES expr .)
-    GT              reduce using rule 21 (expr -> expr TIMES expr .)
-    GE              reduce using rule 21 (expr -> expr TIMES expr .)
-    EQUALS          reduce using rule 21 (expr -> expr TIMES expr .)
-    NE              reduce using rule 21 (expr -> expr TIMES expr .)
-    PLUS            reduce using rule 21 (expr -> expr TIMES expr .)
-    MINUS           reduce using rule 21 (expr -> expr TIMES expr .)
-    TIMES           reduce using rule 21 (expr -> expr TIMES expr .)
-    DIVIDE          reduce using rule 21 (expr -> expr TIMES expr .)
-    MOD             reduce using rule 21 (expr -> expr TIMES expr .)
-    RPAREN          reduce using rule 21 (expr -> expr TIMES expr .)
-    END_LINE        reduce using rule 21 (expr -> expr TIMES expr .)
-    WRITE           reduce using rule 21 (expr -> expr TIMES expr .)
-    WHILE           reduce using rule 21 (expr -> expr TIMES expr .)
-    FOR             reduce using rule 21 (expr -> expr TIMES expr .)
-    IF              reduce using rule 21 (expr -> expr TIMES expr .)
-    VAR             reduce using rule 21 (expr -> expr TIMES expr .)
-    ID              reduce using rule 21 (expr -> expr TIMES expr .)
-    NUMBER          reduce using rule 21 (expr -> expr TIMES expr .)
-    STRINGS         reduce using rule 21 (expr -> expr TIMES expr .)
-    LPAREN          reduce using rule 21 (expr -> expr TIMES expr .)
-    AND             reduce using rule 21 (expr -> expr TIMES expr .)
-    OR              reduce using rule 21 (expr -> expr TIMES expr .)
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    PLUS            reduce using rule 22 (expr -> expr MOD expr .)
+    MINUS           reduce using rule 22 (expr -> expr MOD expr .)
+    TIMES           reduce using rule 22 (expr -> expr MOD expr .)
+    DIVIDE          reduce using rule 22 (expr -> expr MOD expr .)
+    MOD             reduce using rule 22 (expr -> expr MOD expr .)
+    RPAREN          reduce using rule 22 (expr -> expr MOD expr .)
+    AND             reduce using rule 22 (expr -> expr MOD expr .)
+    OR              reduce using rule 22 (expr -> expr MOD expr .)
+    END_LINE        reduce using rule 22 (expr -> expr MOD expr .)
+    WRITE           reduce using rule 22 (expr -> expr MOD expr .)
+    WHILE           reduce using rule 22 (expr -> expr MOD expr .)
+    FOR             reduce using rule 22 (expr -> expr MOD expr .)
+    IF              reduce using rule 22 (expr -> expr MOD expr .)
+    VAR             reduce using rule 22 (expr -> expr MOD expr .)
+    ID              reduce using rule 22 (expr -> expr MOD expr .)
+    NUMBER          reduce using rule 22 (expr -> expr MOD expr .)
+    STRINGS         reduce using rule 22 (expr -> expr MOD expr .)
+    TRUE            reduce using rule 22 (expr -> expr MOD expr .)
+    FALSE           reduce using rule 22 (expr -> expr MOD expr .)
+    $end            reduce using rule 22 (expr -> expr MOD expr .)
+    RBRACKET        reduce using rule 22 (expr -> expr MOD expr .)
+    LT              reduce using rule 22 (expr -> expr MOD expr .)
+    LE              reduce using rule 22 (expr -> expr MOD expr .)
+    GT              reduce using rule 22 (expr -> expr MOD expr .)
+    GE              reduce using rule 22 (expr -> expr MOD expr .)
+    EQUALS          reduce using rule 22 (expr -> expr MOD expr .)
+    NE              reduce using rule 22 (expr -> expr MOD expr .)
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
-  ! INCREMENT       [ reduce using rule 21 (expr -> expr TIMES expr .) ]
-  ! DECREMENT       [ reduce using rule 21 (expr -> expr TIMES expr .) ]
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 30 ]
-  ! TIMES           [ shift and go to state 26 ]
-  ! DIVIDE          [ shift and go to state 25 ]
-  ! MOD             [ shift and go to state 31 ]
+  ! INCREMENT       [ reduce using rule 22 (expr -> expr MOD expr .) ]
+  ! DECREMENT       [ reduce using rule 22 (expr -> expr MOD expr .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 29 ]
+  ! TIMES           [ shift and go to state 25 ]
+  ! DIVIDE          [ shift and go to state 24 ]
+  ! MOD             [ shift and go to state 30 ]
 
 
 state 46
 
-    (19) expr -> expr PLUS expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (13) command -> WHILE LPAREN relexpr RPAREN . LBRACKET S RBRACKET
 
-    LT              reduce using rule 19 (expr -> expr PLUS expr .)
-    LE              reduce using rule 19 (expr -> expr PLUS expr .)
-    GT              reduce using rule 19 (expr -> expr PLUS expr .)
-    GE              reduce using rule 19 (expr -> expr PLUS expr .)
-    EQUALS          reduce using rule 19 (expr -> expr PLUS expr .)
-    NE              reduce using rule 19 (expr -> expr PLUS expr .)
-    PLUS            reduce using rule 19 (expr -> expr PLUS expr .)
-    MINUS           reduce using rule 19 (expr -> expr PLUS expr .)
-    RPAREN          reduce using rule 19 (expr -> expr PLUS expr .)
-    END_LINE        reduce using rule 19 (expr -> expr PLUS expr .)
-    WRITE           reduce using rule 19 (expr -> expr PLUS expr .)
-    WHILE           reduce using rule 19 (expr -> expr PLUS expr .)
-    FOR             reduce using rule 19 (expr -> expr PLUS expr .)
-    IF              reduce using rule 19 (expr -> expr PLUS expr .)
-    VAR             reduce using rule 19 (expr -> expr PLUS expr .)
-    ID              reduce using rule 19 (expr -> expr PLUS expr .)
-    NUMBER          reduce using rule 19 (expr -> expr PLUS expr .)
-    STRINGS         reduce using rule 19 (expr -> expr PLUS expr .)
-    LPAREN          reduce using rule 19 (expr -> expr PLUS expr .)
-    AND             reduce using rule 19 (expr -> expr PLUS expr .)
-    OR              reduce using rule 19 (expr -> expr PLUS expr .)
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
-
-  ! TIMES           [ reduce using rule 19 (expr -> expr PLUS expr .) ]
-  ! DIVIDE          [ reduce using rule 19 (expr -> expr PLUS expr .) ]
-  ! MOD             [ reduce using rule 19 (expr -> expr PLUS expr .) ]
-  ! INCREMENT       [ reduce using rule 19 (expr -> expr PLUS expr .) ]
-  ! DECREMENT       [ reduce using rule 19 (expr -> expr PLUS expr .) ]
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 30 ]
+    LBRACKET        shift and go to state 61
 
 
 state 47
 
-    (20) expr -> expr MINUS expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (35) relexpr -> expr EQUALS . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    LT              reduce using rule 20 (expr -> expr MINUS expr .)
-    LE              reduce using rule 20 (expr -> expr MINUS expr .)
-    GT              reduce using rule 20 (expr -> expr MINUS expr .)
-    GE              reduce using rule 20 (expr -> expr MINUS expr .)
-    EQUALS          reduce using rule 20 (expr -> expr MINUS expr .)
-    NE              reduce using rule 20 (expr -> expr MINUS expr .)
-    PLUS            reduce using rule 20 (expr -> expr MINUS expr .)
-    MINUS           reduce using rule 20 (expr -> expr MINUS expr .)
-    RPAREN          reduce using rule 20 (expr -> expr MINUS expr .)
-    END_LINE        reduce using rule 20 (expr -> expr MINUS expr .)
-    WRITE           reduce using rule 20 (expr -> expr MINUS expr .)
-    WHILE           reduce using rule 20 (expr -> expr MINUS expr .)
-    FOR             reduce using rule 20 (expr -> expr MINUS expr .)
-    IF              reduce using rule 20 (expr -> expr MINUS expr .)
-    VAR             reduce using rule 20 (expr -> expr MINUS expr .)
-    ID              reduce using rule 20 (expr -> expr MINUS expr .)
-    NUMBER          reduce using rule 20 (expr -> expr MINUS expr .)
-    STRINGS         reduce using rule 20 (expr -> expr MINUS expr .)
-    LPAREN          reduce using rule 20 (expr -> expr MINUS expr .)
-    AND             reduce using rule 20 (expr -> expr MINUS expr .)
-    OR              reduce using rule 20 (expr -> expr MINUS expr .)
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    ID              shift and go to state 10
+    NUMBER          shift and go to state 1
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-  ! TIMES           [ reduce using rule 20 (expr -> expr MINUS expr .) ]
-  ! DIVIDE          [ reduce using rule 20 (expr -> expr MINUS expr .) ]
-  ! MOD             [ reduce using rule 20 (expr -> expr MINUS expr .) ]
-  ! INCREMENT       [ reduce using rule 20 (expr -> expr MINUS expr .) ]
-  ! DECREMENT       [ reduce using rule 20 (expr -> expr MINUS expr .) ]
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 30 ]
-
+    expr                           shift and go to state 62
 
 state 48
 
-    (23) expr -> expr MOD expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (33) relexpr -> expr GT . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    LT              reduce using rule 23 (expr -> expr MOD expr .)
-    LE              reduce using rule 23 (expr -> expr MOD expr .)
-    GT              reduce using rule 23 (expr -> expr MOD expr .)
-    GE              reduce using rule 23 (expr -> expr MOD expr .)
-    EQUALS          reduce using rule 23 (expr -> expr MOD expr .)
-    NE              reduce using rule 23 (expr -> expr MOD expr .)
-    PLUS            reduce using rule 23 (expr -> expr MOD expr .)
-    MINUS           reduce using rule 23 (expr -> expr MOD expr .)
-    TIMES           reduce using rule 23 (expr -> expr MOD expr .)
-    DIVIDE          reduce using rule 23 (expr -> expr MOD expr .)
-    MOD             reduce using rule 23 (expr -> expr MOD expr .)
-    RPAREN          reduce using rule 23 (expr -> expr MOD expr .)
-    END_LINE        reduce using rule 23 (expr -> expr MOD expr .)
-    WRITE           reduce using rule 23 (expr -> expr MOD expr .)
-    WHILE           reduce using rule 23 (expr -> expr MOD expr .)
-    FOR             reduce using rule 23 (expr -> expr MOD expr .)
-    IF              reduce using rule 23 (expr -> expr MOD expr .)
-    VAR             reduce using rule 23 (expr -> expr MOD expr .)
-    ID              reduce using rule 23 (expr -> expr MOD expr .)
-    NUMBER          reduce using rule 23 (expr -> expr MOD expr .)
-    STRINGS         reduce using rule 23 (expr -> expr MOD expr .)
-    LPAREN          reduce using rule 23 (expr -> expr MOD expr .)
-    AND             reduce using rule 23 (expr -> expr MOD expr .)
-    OR              reduce using rule 23 (expr -> expr MOD expr .)
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    ID              shift and go to state 10
+    NUMBER          shift and go to state 1
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-  ! INCREMENT       [ reduce using rule 23 (expr -> expr MOD expr .) ]
-  ! DECREMENT       [ reduce using rule 23 (expr -> expr MOD expr .) ]
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 30 ]
-  ! TIMES           [ shift and go to state 26 ]
-  ! DIVIDE          [ shift and go to state 25 ]
-  ! MOD             [ shift and go to state 31 ]
-
+    expr                           shift and go to state 63
 
 state 49
 
-    (14) command -> WHILE LPAREN relexpr RPAREN . LBRACKET S RBRACKET
+    (12) command -> WHILE LPAREN expr RPAREN . LBRACKET S RBRACKET
 
     LBRACKET        shift and go to state 64
 
 
 state 50
 
-    (35) relexpr -> expr EQUALS . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (31) relexpr -> expr LT . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
     expr                           shift and go to state 65
 
 state 51
 
-    (33) relexpr -> expr GT . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (32) relexpr -> expr LE . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
     expr                           shift and go to state 66
 
 state 52
 
-    (13) command -> WHILE LPAREN expr RPAREN . LBRACKET S RBRACKET
+    (34) relexpr -> expr GE . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    LBRACKET        shift and go to state 67
+    ID              shift and go to state 10
+    NUMBER          shift and go to state 1
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
+    expr                           shift and go to state 67
 
 state 53
 
-    (31) relexpr -> expr LT . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (36) relexpr -> expr NE . expr
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
     expr                           shift and go to state 68
 
 state 54
 
-    (32) relexpr -> expr LE . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
-
-    ID              shift and go to state 11
-    NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
-
-    expr                           shift and go to state 69
-
-state 55
-
-    (34) relexpr -> expr GE . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
-
-    ID              shift and go to state 11
-    NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
-
-    expr                           shift and go to state 70
-
-state 56
-
-    (36) relexpr -> expr NE . expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
-
-    ID              shift and go to state 11
-    NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
-
-    expr                           shift and go to state 71
-
-state 57
-
-    (15) command -> FOR LPAREN declarations END_LINE . relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (14) command -> FOR LPAREN declarations END_LINE . relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
     (31) relexpr -> . expr LT expr
     (32) relexpr -> . expr LE expr
     (33) relexpr -> . expr GT expr
     (34) relexpr -> . expr GE expr
     (35) relexpr -> . expr EQUALS expr
     (36) relexpr -> . expr NE expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    relexpr                        shift and go to state 72
-    expr                           shift and go to state 73
+    relexpr                        shift and go to state 69
+    expr                           shift and go to state 70
 
-state 58
+state 55
 
-    (12) command -> WRITE LPAREN expr RPAREN .
+    (11) command -> WRITE LPAREN expr RPAREN .
 
-    END_LINE        reduce using rule 12 (command -> WRITE LPAREN expr RPAREN .)
-    RBRACKET        reduce using rule 12 (command -> WRITE LPAREN expr RPAREN .)
-    $end            reduce using rule 12 (command -> WRITE LPAREN expr RPAREN .)
-
-
-state 59
-
-    (10) declarations -> VAR ID ASSIGN relexpr .
-
-    END_LINE        reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
-    WRITE           reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
-    WHILE           reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
-    FOR             reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
-    IF              reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
-    VAR             reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
-    ID              reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
-    NUMBER          reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
-    STRINGS         reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
-    LPAREN          reduce using rule 10 (declarations -> VAR ID ASSIGN relexpr .)
+    END_LINE        reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    WRITE           reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    WHILE           reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    FOR             reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    IF              reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    VAR             reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    ID              reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    NUMBER          reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    STRINGS         reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    TRUE            reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    FALSE           reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    RBRACKET        reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
+    $end            reduce using rule 11 (command -> WRITE LPAREN expr RPAREN .)
 
 
-state 60
+state 56
 
-    (9) declarations -> VAR ID ASSIGN expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (9) declarations -> VAR ID ASSIGN relexpr .
+
+    END_LINE        reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    WRITE           reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    WHILE           reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    FOR             reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    IF              reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    VAR             reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    ID              reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    NUMBER          reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    STRINGS         reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    TRUE            reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    FALSE           reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    $end            reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+    RBRACKET        reduce using rule 9 (declarations -> VAR ID ASSIGN relexpr .)
+
+
+state 57
+
+    (8) declarations -> VAR ID ASSIGN expr .
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
     (31) relexpr -> expr . LT expr
     (32) relexpr -> expr . LE expr
     (33) relexpr -> expr . GT expr
@@ -1558,41 +1630,44 @@ state 60
     (35) relexpr -> expr . EQUALS expr
     (36) relexpr -> expr . NE expr
 
-    END_LINE        reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    WRITE           reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    WHILE           reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    FOR             reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    IF              reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    VAR             reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    ID              reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    NUMBER          reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    STRINGS         reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    LPAREN          reduce using rule 9 (declarations -> VAR ID ASSIGN expr .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
-    LT              shift and go to state 53
-    LE              shift and go to state 54
-    GT              shift and go to state 51
-    GE              shift and go to state 55
-    EQUALS          shift and go to state 50
-    NE              shift and go to state 56
+    END_LINE        reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    WRITE           reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    WHILE           reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    FOR             reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    IF              reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    VAR             reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    ID              reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    NUMBER          reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    STRINGS         reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    TRUE            reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    FALSE           reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    $end            reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    RBRACKET        reduce using rule 8 (declarations -> VAR ID ASSIGN expr .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
+    LT              shift and go to state 50
+    LE              shift and go to state 51
+    GT              shift and go to state 48
+    GE              shift and go to state 52
+    EQUALS          shift and go to state 47
+    NE              shift and go to state 53
 
 
-state 61
+state 58
 
-    (16) ifcommand -> IF LPAREN relexprgroup RPAREN . LBRACKET S RBRACKET
-    (17) ifcommand -> IF LPAREN relexprgroup RPAREN . LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> IF LPAREN relexprgroup RPAREN . LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (15) command -> IF LPAREN relexprgroup RPAREN . LBRACKET S RBRACKET
+    (16) command -> IF LPAREN relexprgroup RPAREN . LBRACKET S RBRACKET ELSE command
+    (17) command -> IF LPAREN relexprgroup RPAREN . LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
 
-    LBRACKET        shift and go to state 74
+    LBRACKET        shift and go to state 71
 
 
-state 62
+state 59
 
     (37) relexprgroup -> relexpr AND . relexprgroup
     (37) relexprgroup -> . relexpr AND relexprgroup
@@ -1605,29 +1680,31 @@ state 62
     (34) relexpr -> . expr GE expr
     (35) relexpr -> . expr EQUALS expr
     (36) relexpr -> . expr NE expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    relexprgroup                   shift and go to state 75
-    relexpr                        shift and go to state 42
-    expr                           shift and go to state 43
+    relexprgroup                   shift and go to state 72
+    relexpr                        shift and go to state 39
+    expr                           shift and go to state 40
 
-state 63
+state 60
 
     (38) relexprgroup -> relexpr OR . relexprgroup
     (37) relexprgroup -> . relexpr AND relexprgroup
@@ -1640,94 +1717,96 @@ state 63
     (34) relexpr -> . expr GE expr
     (35) relexpr -> . expr EQUALS expr
     (36) relexpr -> . expr NE expr
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
-    ID              shift and go to state 11
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    relexprgroup                   shift and go to state 76
-    relexpr                        shift and go to state 42
-    expr                           shift and go to state 43
+    relexprgroup                   shift and go to state 73
+    relexpr                        shift and go to state 39
+    expr                           shift and go to state 40
 
-state 64
+state 61
 
-    (14) command -> WHILE LPAREN relexpr RPAREN LBRACKET . S RBRACKET
+    (13) command -> WHILE LPAREN relexpr RPAREN LBRACKET . S RBRACKET
     (1) S -> . statement S
     (2) S -> . statement END_LINE S
     (3) S -> . statement END_LINE
-    (4) S -> . command
-    (5) S -> . command END_LINE
-    (6) S -> . ifcommand
-    (7) statement -> . declarations
-    (8) statement -> . expr
-    (12) command -> . WRITE LPAREN expr RPAREN
-    (13) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
-    (14) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
-    (15) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-    (16) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-    (9) declarations -> . VAR ID ASSIGN expr
-    (10) declarations -> . VAR ID ASSIGN relexpr
-    (11) declarations -> . VAR ID
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (4) S -> . statement
+    (5) statement -> . command
+    (6) statement -> . declarations
+    (7) statement -> . expr
+    (11) command -> . WRITE LPAREN expr RPAREN
+    (12) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (14) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (15) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (8) declarations -> . VAR ID ASSIGN expr
+    (9) declarations -> . VAR ID ASSIGN relexpr
+    (10) declarations -> . VAR ID
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
     WRITE           shift and go to state 7
     WHILE           shift and go to state 2
     FOR             shift and go to state 6
-    IF              shift and go to state 12
-    VAR             shift and go to state 10
-    ID              shift and go to state 11
+    IF              shift and go to state 11
+    VAR             shift and go to state 9
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    ifcommand                      shift and go to state 5
     expr                           shift and go to state 13
     declarations                   shift and go to state 14
-    S                              shift and go to state 77
+    S                              shift and go to state 74
     command                        shift and go to state 15
-    statement                      shift and go to state 4
+    statement                      shift and go to state 5
 
-state 65
+state 62
 
     (35) relexpr -> expr EQUALS expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
+    END_LINE        reduce using rule 35 (relexpr -> expr EQUALS expr .)
     RPAREN          reduce using rule 35 (relexpr -> expr EQUALS expr .)
     AND             reduce using rule 35 (relexpr -> expr EQUALS expr .)
     OR              reduce using rule 35 (relexpr -> expr EQUALS expr .)
-    END_LINE        reduce using rule 35 (relexpr -> expr EQUALS expr .)
     WRITE           reduce using rule 35 (relexpr -> expr EQUALS expr .)
     WHILE           reduce using rule 35 (relexpr -> expr EQUALS expr .)
     FOR             reduce using rule 35 (relexpr -> expr EQUALS expr .)
@@ -1736,31 +1815,34 @@ state 65
     ID              reduce using rule 35 (relexpr -> expr EQUALS expr .)
     NUMBER          reduce using rule 35 (relexpr -> expr EQUALS expr .)
     STRINGS         reduce using rule 35 (relexpr -> expr EQUALS expr .)
-    LPAREN          reduce using rule 35 (relexpr -> expr EQUALS expr .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    TRUE            reduce using rule 35 (relexpr -> expr EQUALS expr .)
+    FALSE           reduce using rule 35 (relexpr -> expr EQUALS expr .)
+    $end            reduce using rule 35 (relexpr -> expr EQUALS expr .)
+    RBRACKET        reduce using rule 35 (relexpr -> expr EQUALS expr .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
 
-state 66
+state 63
 
     (33) relexpr -> expr GT expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
+    END_LINE        reduce using rule 33 (relexpr -> expr GT expr .)
     RPAREN          reduce using rule 33 (relexpr -> expr GT expr .)
     AND             reduce using rule 33 (relexpr -> expr GT expr .)
     OR              reduce using rule 33 (relexpr -> expr GT expr .)
-    END_LINE        reduce using rule 33 (relexpr -> expr GT expr .)
     WRITE           reduce using rule 33 (relexpr -> expr GT expr .)
     WHILE           reduce using rule 33 (relexpr -> expr GT expr .)
     FOR             reduce using rule 33 (relexpr -> expr GT expr .)
@@ -1769,82 +1851,85 @@ state 66
     ID              reduce using rule 33 (relexpr -> expr GT expr .)
     NUMBER          reduce using rule 33 (relexpr -> expr GT expr .)
     STRINGS         reduce using rule 33 (relexpr -> expr GT expr .)
-    LPAREN          reduce using rule 33 (relexpr -> expr GT expr .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    TRUE            reduce using rule 33 (relexpr -> expr GT expr .)
+    FALSE           reduce using rule 33 (relexpr -> expr GT expr .)
+    $end            reduce using rule 33 (relexpr -> expr GT expr .)
+    RBRACKET        reduce using rule 33 (relexpr -> expr GT expr .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
 
-state 67
+state 64
 
-    (13) command -> WHILE LPAREN expr RPAREN LBRACKET . S RBRACKET
+    (12) command -> WHILE LPAREN expr RPAREN LBRACKET . S RBRACKET
     (1) S -> . statement S
     (2) S -> . statement END_LINE S
     (3) S -> . statement END_LINE
-    (4) S -> . command
-    (5) S -> . command END_LINE
-    (6) S -> . ifcommand
-    (7) statement -> . declarations
-    (8) statement -> . expr
-    (12) command -> . WRITE LPAREN expr RPAREN
-    (13) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
-    (14) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
-    (15) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-    (16) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-    (9) declarations -> . VAR ID ASSIGN expr
-    (10) declarations -> . VAR ID ASSIGN relexpr
-    (11) declarations -> . VAR ID
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (4) S -> . statement
+    (5) statement -> . command
+    (6) statement -> . declarations
+    (7) statement -> . expr
+    (11) command -> . WRITE LPAREN expr RPAREN
+    (12) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (14) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (15) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (8) declarations -> . VAR ID ASSIGN expr
+    (9) declarations -> . VAR ID ASSIGN relexpr
+    (10) declarations -> . VAR ID
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
     WRITE           shift and go to state 7
     WHILE           shift and go to state 2
     FOR             shift and go to state 6
-    IF              shift and go to state 12
-    VAR             shift and go to state 10
-    ID              shift and go to state 11
+    IF              shift and go to state 11
+    VAR             shift and go to state 9
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    ifcommand                      shift and go to state 5
     expr                           shift and go to state 13
     declarations                   shift and go to state 14
-    S                              shift and go to state 78
+    S                              shift and go to state 75
     command                        shift and go to state 15
-    statement                      shift and go to state 4
+    statement                      shift and go to state 5
 
-state 68
+state 65
 
     (31) relexpr -> expr LT expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
+    END_LINE        reduce using rule 31 (relexpr -> expr LT expr .)
     RPAREN          reduce using rule 31 (relexpr -> expr LT expr .)
     AND             reduce using rule 31 (relexpr -> expr LT expr .)
     OR              reduce using rule 31 (relexpr -> expr LT expr .)
-    END_LINE        reduce using rule 31 (relexpr -> expr LT expr .)
     WRITE           reduce using rule 31 (relexpr -> expr LT expr .)
     WHILE           reduce using rule 31 (relexpr -> expr LT expr .)
     FOR             reduce using rule 31 (relexpr -> expr LT expr .)
@@ -1853,31 +1938,34 @@ state 68
     ID              reduce using rule 31 (relexpr -> expr LT expr .)
     NUMBER          reduce using rule 31 (relexpr -> expr LT expr .)
     STRINGS         reduce using rule 31 (relexpr -> expr LT expr .)
-    LPAREN          reduce using rule 31 (relexpr -> expr LT expr .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    TRUE            reduce using rule 31 (relexpr -> expr LT expr .)
+    FALSE           reduce using rule 31 (relexpr -> expr LT expr .)
+    $end            reduce using rule 31 (relexpr -> expr LT expr .)
+    RBRACKET        reduce using rule 31 (relexpr -> expr LT expr .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
 
-state 69
+state 66
 
     (32) relexpr -> expr LE expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
+    END_LINE        reduce using rule 32 (relexpr -> expr LE expr .)
     RPAREN          reduce using rule 32 (relexpr -> expr LE expr .)
     AND             reduce using rule 32 (relexpr -> expr LE expr .)
     OR              reduce using rule 32 (relexpr -> expr LE expr .)
-    END_LINE        reduce using rule 32 (relexpr -> expr LE expr .)
     WRITE           reduce using rule 32 (relexpr -> expr LE expr .)
     WHILE           reduce using rule 32 (relexpr -> expr LE expr .)
     FOR             reduce using rule 32 (relexpr -> expr LE expr .)
@@ -1886,31 +1974,34 @@ state 69
     ID              reduce using rule 32 (relexpr -> expr LE expr .)
     NUMBER          reduce using rule 32 (relexpr -> expr LE expr .)
     STRINGS         reduce using rule 32 (relexpr -> expr LE expr .)
-    LPAREN          reduce using rule 32 (relexpr -> expr LE expr .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    TRUE            reduce using rule 32 (relexpr -> expr LE expr .)
+    FALSE           reduce using rule 32 (relexpr -> expr LE expr .)
+    $end            reduce using rule 32 (relexpr -> expr LE expr .)
+    RBRACKET        reduce using rule 32 (relexpr -> expr LE expr .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
 
-state 70
+state 67
 
     (34) relexpr -> expr GE expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
+    END_LINE        reduce using rule 34 (relexpr -> expr GE expr .)
     RPAREN          reduce using rule 34 (relexpr -> expr GE expr .)
     AND             reduce using rule 34 (relexpr -> expr GE expr .)
     OR              reduce using rule 34 (relexpr -> expr GE expr .)
-    END_LINE        reduce using rule 34 (relexpr -> expr GE expr .)
     WRITE           reduce using rule 34 (relexpr -> expr GE expr .)
     WHILE           reduce using rule 34 (relexpr -> expr GE expr .)
     FOR             reduce using rule 34 (relexpr -> expr GE expr .)
@@ -1919,31 +2010,34 @@ state 70
     ID              reduce using rule 34 (relexpr -> expr GE expr .)
     NUMBER          reduce using rule 34 (relexpr -> expr GE expr .)
     STRINGS         reduce using rule 34 (relexpr -> expr GE expr .)
-    LPAREN          reduce using rule 34 (relexpr -> expr GE expr .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    TRUE            reduce using rule 34 (relexpr -> expr GE expr .)
+    FALSE           reduce using rule 34 (relexpr -> expr GE expr .)
+    $end            reduce using rule 34 (relexpr -> expr GE expr .)
+    RBRACKET        reduce using rule 34 (relexpr -> expr GE expr .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
 
-state 71
+state 68
 
     (36) relexpr -> expr NE expr .
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
+    END_LINE        reduce using rule 36 (relexpr -> expr NE expr .)
     RPAREN          reduce using rule 36 (relexpr -> expr NE expr .)
     AND             reduce using rule 36 (relexpr -> expr NE expr .)
     OR              reduce using rule 36 (relexpr -> expr NE expr .)
-    END_LINE        reduce using rule 36 (relexpr -> expr NE expr .)
     WRITE           reduce using rule 36 (relexpr -> expr NE expr .)
     WHILE           reduce using rule 36 (relexpr -> expr NE expr .)
     FOR             reduce using rule 36 (relexpr -> expr NE expr .)
@@ -1952,24 +2046,27 @@ state 71
     ID              reduce using rule 36 (relexpr -> expr NE expr .)
     NUMBER          reduce using rule 36 (relexpr -> expr NE expr .)
     STRINGS         reduce using rule 36 (relexpr -> expr NE expr .)
-    LPAREN          reduce using rule 36 (relexpr -> expr NE expr .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    TRUE            reduce using rule 36 (relexpr -> expr NE expr .)
+    FALSE           reduce using rule 36 (relexpr -> expr NE expr .)
+    $end            reduce using rule 36 (relexpr -> expr NE expr .)
+    RBRACKET        reduce using rule 36 (relexpr -> expr NE expr .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
 
-state 72
+state 69
 
-    (15) command -> FOR LPAREN declarations END_LINE relexpr . END_LINE expr RPAREN LBRACKET S RBRACKET
+    (14) command -> FOR LPAREN declarations END_LINE relexpr . END_LINE expr RPAREN LBRACKET S RBRACKET
 
-    END_LINE        shift and go to state 79
+    END_LINE        shift and go to state 76
 
 
-state 73
+state 70
 
     (31) relexpr -> expr . LT expr
     (32) relexpr -> expr . LE expr
@@ -1977,349 +2074,421 @@ state 73
     (34) relexpr -> expr . GE expr
     (35) relexpr -> expr . EQUALS expr
     (36) relexpr -> expr . NE expr
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
-    LT              shift and go to state 53
-    LE              shift and go to state 54
-    GT              shift and go to state 51
-    GE              shift and go to state 55
-    EQUALS          shift and go to state 50
-    NE              shift and go to state 56
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    LT              shift and go to state 50
+    LE              shift and go to state 51
+    GT              shift and go to state 48
+    GE              shift and go to state 52
+    EQUALS          shift and go to state 47
+    NE              shift and go to state 53
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
 
-state 74
+state 71
 
-    (16) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET . S RBRACKET
-    (17) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET . S RBRACKET ELSE ifcommand
-    (18) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET . S RBRACKET ELSE LBRACKET S RBRACKET
+    (15) command -> IF LPAREN relexprgroup RPAREN LBRACKET . S RBRACKET
+    (16) command -> IF LPAREN relexprgroup RPAREN LBRACKET . S RBRACKET ELSE command
+    (17) command -> IF LPAREN relexprgroup RPAREN LBRACKET . S RBRACKET ELSE LBRACKET S RBRACKET
     (1) S -> . statement S
     (2) S -> . statement END_LINE S
     (3) S -> . statement END_LINE
-    (4) S -> . command
-    (5) S -> . command END_LINE
-    (6) S -> . ifcommand
-    (7) statement -> . declarations
-    (8) statement -> . expr
-    (12) command -> . WRITE LPAREN expr RPAREN
-    (13) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
-    (14) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
-    (15) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-    (16) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-    (9) declarations -> . VAR ID ASSIGN expr
-    (10) declarations -> . VAR ID ASSIGN relexpr
-    (11) declarations -> . VAR ID
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (4) S -> . statement
+    (5) statement -> . command
+    (6) statement -> . declarations
+    (7) statement -> . expr
+    (11) command -> . WRITE LPAREN expr RPAREN
+    (12) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (14) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (15) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (8) declarations -> . VAR ID ASSIGN expr
+    (9) declarations -> . VAR ID ASSIGN relexpr
+    (10) declarations -> . VAR ID
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
     WRITE           shift and go to state 7
     WHILE           shift and go to state 2
     FOR             shift and go to state 6
-    IF              shift and go to state 12
-    VAR             shift and go to state 10
-    ID              shift and go to state 11
+    IF              shift and go to state 11
+    VAR             shift and go to state 9
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    ifcommand                      shift and go to state 5
     expr                           shift and go to state 13
     declarations                   shift and go to state 14
-    S                              shift and go to state 80
+    S                              shift and go to state 77
     command                        shift and go to state 15
-    statement                      shift and go to state 4
+    statement                      shift and go to state 5
 
-state 75
+state 72
 
     (37) relexprgroup -> relexpr AND relexprgroup .
 
     RPAREN          reduce using rule 37 (relexprgroup -> relexpr AND relexprgroup .)
 
 
-state 76
+state 73
 
     (38) relexprgroup -> relexpr OR relexprgroup .
 
     RPAREN          reduce using rule 38 (relexprgroup -> relexpr OR relexprgroup .)
 
 
+state 74
+
+    (13) command -> WHILE LPAREN relexpr RPAREN LBRACKET S . RBRACKET
+
+    RBRACKET        shift and go to state 78
+
+
+state 75
+
+    (12) command -> WHILE LPAREN expr RPAREN LBRACKET S . RBRACKET
+
+    RBRACKET        shift and go to state 79
+
+
+state 76
+
+    (14) command -> FOR LPAREN declarations END_LINE relexpr END_LINE . expr RPAREN LBRACKET S RBRACKET
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
+
+    ID              shift and go to state 10
+    NUMBER          shift and go to state 1
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
+
+    expr                           shift and go to state 80
+
 state 77
 
-    (14) command -> WHILE LPAREN relexpr RPAREN LBRACKET S . RBRACKET
+    (15) command -> IF LPAREN relexprgroup RPAREN LBRACKET S . RBRACKET
+    (16) command -> IF LPAREN relexprgroup RPAREN LBRACKET S . RBRACKET ELSE command
+    (17) command -> IF LPAREN relexprgroup RPAREN LBRACKET S . RBRACKET ELSE LBRACKET S RBRACKET
 
     RBRACKET        shift and go to state 81
 
 
 state 78
 
-    (13) command -> WHILE LPAREN expr RPAREN LBRACKET S . RBRACKET
+    (13) command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .
 
-    RBRACKET        shift and go to state 82
+    END_LINE        reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    WRITE           reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    WHILE           reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    FOR             reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    IF              reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    VAR             reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    ID              reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    NUMBER          reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    STRINGS         reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    TRUE            reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    FALSE           reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    RBRACKET        reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    $end            reduce using rule 13 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
 
 
 state 79
 
-    (15) command -> FOR LPAREN declarations END_LINE relexpr END_LINE . expr RPAREN LBRACKET S RBRACKET
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (12) command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .
 
-    ID              shift and go to state 11
-    NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    END_LINE        reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    WRITE           reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    WHILE           reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    FOR             reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    IF              reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    VAR             reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    ID              reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    NUMBER          reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    STRINGS         reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    TRUE            reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    FALSE           reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    RBRACKET        reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    $end            reduce using rule 12 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
 
-    expr                           shift and go to state 83
 
 state 80
 
-    (16) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S . RBRACKET
-    (17) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S . RBRACKET ELSE ifcommand
-    (18) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S . RBRACKET ELSE LBRACKET S RBRACKET
+    (14) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr . RPAREN LBRACKET S RBRACKET
+    (18) expr -> expr . PLUS expr
+    (19) expr -> expr . MINUS expr
+    (20) expr -> expr . TIMES expr
+    (21) expr -> expr . DIVIDE expr
+    (22) expr -> expr . MOD expr
+    (23) expr -> expr . INCREMENT
+    (24) expr -> expr . DECREMENT
 
-    RBRACKET        shift and go to state 84
+    RPAREN          shift and go to state 82
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 24
+    MOD             shift and go to state 30
+    INCREMENT       shift and go to state 27
+    DECREMENT       shift and go to state 28
 
 
 state 81
 
-    (14) command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .
+    (15) command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .
+    (16) command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET . ELSE command
+    (17) command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET . ELSE LBRACKET S RBRACKET
 
-    END_LINE        reduce using rule 14 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
-    RBRACKET        reduce using rule 14 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
-    $end            reduce using rule 14 (command -> WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET .)
+    END_LINE        reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    WRITE           reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    WHILE           reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    FOR             reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    IF              reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    VAR             reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    ID              reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    NUMBER          reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    STRINGS         reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    TRUE            reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    FALSE           reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    RBRACKET        reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    $end            reduce using rule 15 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
+    ELSE            shift and go to state 83
 
 
 state 82
 
-    (13) command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .
+    (14) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN . LBRACKET S RBRACKET
 
-    END_LINE        reduce using rule 13 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
-    RBRACKET        reduce using rule 13 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
-    $end            reduce using rule 13 (command -> WHILE LPAREN expr RPAREN LBRACKET S RBRACKET .)
+    LBRACKET        shift and go to state 84
 
 
 state 83
 
-    (15) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr . RPAREN LBRACKET S RBRACKET
-    (19) expr -> expr . PLUS expr
-    (20) expr -> expr . MINUS expr
-    (21) expr -> expr . TIMES expr
-    (22) expr -> expr . DIVIDE expr
-    (23) expr -> expr . MOD expr
-    (24) expr -> expr . INCREMENT
-    (25) expr -> expr . DECREMENT
+    (16) command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE . command
+    (17) command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE . LBRACKET S RBRACKET
+    (11) command -> . WRITE LPAREN expr RPAREN
+    (12) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (14) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (15) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
 
-    RPAREN          shift and go to state 85
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 30
-    TIMES           shift and go to state 26
-    DIVIDE          shift and go to state 25
-    MOD             shift and go to state 31
-    INCREMENT       shift and go to state 28
-    DECREMENT       shift and go to state 29
+    LBRACKET        shift and go to state 85
+    WRITE           shift and go to state 7
+    WHILE           shift and go to state 2
+    FOR             shift and go to state 6
+    IF              shift and go to state 11
 
+    command                        shift and go to state 86
 
 state 84
 
-    (16) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .
-    (17) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET . ELSE ifcommand
-    (18) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET . ELSE LBRACKET S RBRACKET
-
-    RBRACKET        reduce using rule 16 (ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
-    $end            reduce using rule 16 (ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET .)
-    ELSE            shift and go to state 86
-
-
-state 85
-
-    (15) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN . LBRACKET S RBRACKET
-
-    LBRACKET        shift and go to state 87
-
-
-state 86
-
-    (17) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE . ifcommand
-    (18) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE . LBRACKET S RBRACKET
-    (16) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-
-    LBRACKET        shift and go to state 89
-    IF              shift and go to state 12
-
-    ifcommand                      shift and go to state 88
-
-state 87
-
-    (15) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET . S RBRACKET
+    (14) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET . S RBRACKET
     (1) S -> . statement S
     (2) S -> . statement END_LINE S
     (3) S -> . statement END_LINE
-    (4) S -> . command
-    (5) S -> . command END_LINE
-    (6) S -> . ifcommand
-    (7) statement -> . declarations
-    (8) statement -> . expr
-    (12) command -> . WRITE LPAREN expr RPAREN
-    (13) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
-    (14) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
-    (15) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-    (16) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-    (9) declarations -> . VAR ID ASSIGN expr
-    (10) declarations -> . VAR ID ASSIGN relexpr
-    (11) declarations -> . VAR ID
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (4) S -> . statement
+    (5) statement -> . command
+    (6) statement -> . declarations
+    (7) statement -> . expr
+    (11) command -> . WRITE LPAREN expr RPAREN
+    (12) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (14) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (15) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (8) declarations -> . VAR ID ASSIGN expr
+    (9) declarations -> . VAR ID ASSIGN relexpr
+    (10) declarations -> . VAR ID
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
 
     WRITE           shift and go to state 7
     WHILE           shift and go to state 2
     FOR             shift and go to state 6
-    IF              shift and go to state 12
-    VAR             shift and go to state 10
-    ID              shift and go to state 11
+    IF              shift and go to state 11
+    VAR             shift and go to state 9
+    ID              shift and go to state 10
     NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
 
-    ifcommand                      shift and go to state 5
     expr                           shift and go to state 13
     declarations                   shift and go to state 14
-    S                              shift and go to state 90
+    S                              shift and go to state 87
     command                        shift and go to state 15
-    statement                      shift and go to state 4
+    statement                      shift and go to state 5
+
+state 85
+
+    (17) command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET . S RBRACKET
+    (1) S -> . statement S
+    (2) S -> . statement END_LINE S
+    (3) S -> . statement END_LINE
+    (4) S -> . statement
+    (5) statement -> . command
+    (6) statement -> . declarations
+    (7) statement -> . expr
+    (11) command -> . WRITE LPAREN expr RPAREN
+    (12) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
+    (13) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
+    (14) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
+    (15) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
+    (16) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
+    (17) command -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
+    (8) declarations -> . VAR ID ASSIGN expr
+    (9) declarations -> . VAR ID ASSIGN relexpr
+    (10) declarations -> . VAR ID
+    (18) expr -> . expr PLUS expr
+    (19) expr -> . expr MINUS expr
+    (20) expr -> . expr TIMES expr
+    (21) expr -> . expr DIVIDE expr
+    (22) expr -> . expr MOD expr
+    (23) expr -> . expr INCREMENT
+    (24) expr -> . expr DECREMENT
+    (25) expr -> . ID ASSIGN expr
+    (26) expr -> . NUMBER
+    (27) expr -> . STRINGS
+    (28) expr -> . ID
+    (29) expr -> . TRUE
+    (30) expr -> . FALSE
+
+    WRITE           shift and go to state 7
+    WHILE           shift and go to state 2
+    FOR             shift and go to state 6
+    IF              shift and go to state 11
+    VAR             shift and go to state 9
+    ID              shift and go to state 10
+    NUMBER          shift and go to state 1
+    STRINGS         shift and go to state 4
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 12
+
+    expr                           shift and go to state 13
+    declarations                   shift and go to state 14
+    S                              shift and go to state 88
+    command                        shift and go to state 15
+    statement                      shift and go to state 5
+
+state 86
+
+    (16) command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .
+
+    END_LINE        reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    WRITE           reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    WHILE           reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    FOR             reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    IF              reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    VAR             reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    ID              reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    NUMBER          reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    STRINGS         reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    TRUE            reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    FALSE           reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    RBRACKET        reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+    $end            reduce using rule 16 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command .)
+
+
+state 87
+
+    (14) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S . RBRACKET
+
+    RBRACKET        shift and go to state 89
+
 
 state 88
 
-    (17) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand .
+    (17) command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S . RBRACKET
 
-    RBRACKET        reduce using rule 17 (ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand .)
-    $end            reduce using rule 17 (ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand .)
+    RBRACKET        shift and go to state 90
 
 
 state 89
 
-    (18) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET . S RBRACKET
-    (1) S -> . statement S
-    (2) S -> . statement END_LINE S
-    (3) S -> . statement END_LINE
-    (4) S -> . command
-    (5) S -> . command END_LINE
-    (6) S -> . ifcommand
-    (7) statement -> . declarations
-    (8) statement -> . expr
-    (12) command -> . WRITE LPAREN expr RPAREN
-    (13) command -> . WHILE LPAREN expr RPAREN LBRACKET S RBRACKET
-    (14) command -> . WHILE LPAREN relexpr RPAREN LBRACKET S RBRACKET
-    (15) command -> . FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET
-    (16) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET
-    (17) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE ifcommand
-    (18) ifcommand -> . IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET
-    (9) declarations -> . VAR ID ASSIGN expr
-    (10) declarations -> . VAR ID ASSIGN relexpr
-    (11) declarations -> . VAR ID
-    (19) expr -> . expr PLUS expr
-    (20) expr -> . expr MINUS expr
-    (21) expr -> . expr TIMES expr
-    (22) expr -> . expr DIVIDE expr
-    (23) expr -> . expr MOD expr
-    (24) expr -> . expr INCREMENT
-    (25) expr -> . expr DECREMENT
-    (26) expr -> . ID ASSIGN expr
-    (27) expr -> . NUMBER
-    (28) expr -> . STRINGS
-    (29) expr -> . ID
-    (30) expr -> . LPAREN expr RPAREN
+    (14) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .
 
-    WRITE           shift and go to state 7
-    WHILE           shift and go to state 2
-    FOR             shift and go to state 6
-    IF              shift and go to state 12
-    VAR             shift and go to state 10
-    ID              shift and go to state 11
-    NUMBER          shift and go to state 1
-    STRINGS         shift and go to state 3
-    LPAREN          shift and go to state 9
+    END_LINE        reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    WRITE           reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    WHILE           reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    FOR             reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    IF              reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    VAR             reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    ID              reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    NUMBER          reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    STRINGS         reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    TRUE            reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    FALSE           reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    RBRACKET        reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
+    $end            reduce using rule 14 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
 
-    ifcommand                      shift and go to state 5
-    expr                           shift and go to state 13
-    declarations                   shift and go to state 14
-    S                              shift and go to state 91
-    command                        shift and go to state 15
-    statement                      shift and go to state 4
 
 state 90
 
-    (15) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S . RBRACKET
+    (17) command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .
 
-    RBRACKET        shift and go to state 92
-
-
-state 91
-
-    (18) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S . RBRACKET
-
-    RBRACKET        shift and go to state 93
-
-
-state 92
-
-    (15) command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .
-
-    END_LINE        reduce using rule 15 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
-    RBRACKET        reduce using rule 15 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
-    $end            reduce using rule 15 (command -> FOR LPAREN declarations END_LINE relexpr END_LINE expr RPAREN LBRACKET S RBRACKET .)
-
-
-state 93
-
-    (18) ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .
-
-    RBRACKET        reduce using rule 18 (ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
-    $end            reduce using rule 18 (ifcommand -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    END_LINE        reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    WRITE           reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    WHILE           reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    FOR             reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    IF              reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    VAR             reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    ID              reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    NUMBER          reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    STRINGS         reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    TRUE            reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    FALSE           reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    RBRACKET        reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
+    $end            reduce using rule 17 (command -> IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET .)
 
