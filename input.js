@@ -11,10 +11,7 @@
 //         write(i);
 //     }
 // }
-// TODO: NOT, grupos de booleans, funciones, arrays
+// TODO: funciones, arrays
 
-var a = 10;
-
-while(!true) {
-    var b = 12;
-}
+var a = 2;
+write(a);

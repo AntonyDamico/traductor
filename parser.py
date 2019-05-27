@@ -139,12 +139,12 @@ def p_assign_expression(p):
 
 def p_number_expression(p):
     '''expr : NUMBER'''
-    p[0] = ast.TokenNode([p[1]])
+    p[0] = ast.TokenNode(p[1])
 
 
 def p_string_expression(p):
     'expr : STRINGS'
-    p[0] = ast.TokenNode([p[1]])
+    p[0] = ast.TokenNode(p[1])
 
 
 def p_variable_expression(p):
@@ -155,7 +155,7 @@ def p_variable_expression(p):
         p[0] = ast.TokenNode(p[1] == 'true')
     else:
         # p[0] = ('ID', p[1])
-        p[0] = ast.TokenNode([p[1]])
+        p[0] = ast.IdNode(ast.TokenNode(p[1]))
 
 
 # def p_group_expression(p):
@@ -188,7 +188,7 @@ def p_rel_group(p):
                     | expr
     '''
     if(len(p) > 3):
-        p[0] = ('RELOPS', p[2], p[1], p[3])
+        p[0] = ast.OpNode(p[2], [p[1], p[3]])
     elif(len(p) > 2):
         p[0] = ('NOT', p[2])
     else:
@@ -206,6 +206,7 @@ def parse(filename):
     file.close()
     result = parser.parse(code)
     print(result)
+    result.eval_all()
     return result
 # print(result.nodeTree())
 

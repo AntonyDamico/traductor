@@ -1,3 +1,8 @@
+from SymbolTable import SymbolTable
+
+table = SymbolTable()
+
+
 class Node:
 
     count = 0
@@ -16,6 +21,20 @@ class Node:
             self.children = [children]
         self.next = []
 
+    def eval_all(self):
+        # self.eval()
+        # print('======')
+        # print(self.children)
+        # print(self.__class__.__name__)
+        # print(self.children)
+        # print('====================')
+        for c in self.children:
+            if(c.children):
+                c.eval()
+
+    def eval(self):
+        print('pass')
+        pass
 
     def addNext(self,next):
         self.next.append(next)
@@ -50,6 +69,9 @@ class TokenNode(Node):
     def __repr__(self):
         return repr(self.tok)
 
+    def eval(self):
+        return self.tok
+
 
 class OpNode(Node):
     type = 'op'
@@ -65,6 +87,10 @@ class OpNode(Node):
     def __repr__(self):
         return "%s (%s)" % (self.op, self.nbargs)
    
+    def eval(self):
+        if(self.op == '+'):
+            return self.children[0].eval() + self.children[1].eval()
+
 
 def addToClass(cls):
 
@@ -94,11 +120,15 @@ class Return(Node):
 class VarNode(Node):
     type = 'var'
 
+    def eval(self):
+        global table
+        table.createVariable(self.children[0].eval(), self.children[1].eval())
+    
 class WriteNode(Node):
     type = 'write'
 
-class PromptNode(Node):
-    type = 'prompt'
+    def eval(self):
+        print('> ' + str(self.children[0].eval()))
 
 class IfNode(Node):
     type = 'if'
@@ -113,7 +143,11 @@ class CallFunNode(Node):
     type = 'callfun'
      
 class IdNode(Node):
-    type = 'ids'
+    type = 'id'
+
+    def eval(self):
+        global table
+        return table.readVariable(self.children[0].eval())
 
 class ExpresionesNode(Node):
     type = 'Expresiones'
