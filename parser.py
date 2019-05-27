@@ -21,7 +21,6 @@ precedence = (
 
 def p_error(p):
     # print('ERROR')
-    print("Sintantic: syntax error '%s' in line %d" % (p.value, p.lineno))
     sys.exit()
 
 

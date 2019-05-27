@@ -2,7 +2,7 @@ import ply.lex as lex
 import sys
 import re
 
-# Palabras Reservadas
+# Reserved Words
 reserved = (
     'var',
     'function',
@@ -14,8 +14,7 @@ reserved = (
     'else'
 )
 
-# Lista de tokens mas las palabras reservadas
-# en la forma (RESERVADA: reservada)
+# Token list plus uppercase  reserved words
 tokens = (
     'END_LINE',
     'NUMBER',

@@ -6,7 +6,7 @@ table = SymbolTable()
 class Node:
 
     count = 0
-    type = 'Node (unspecified)'
+    type = 'Node (no type)'
 
     def __init__(self, children=None):
         self.ID = str(Node.count)
@@ -37,23 +37,21 @@ class Node:
     def addNext(self, next):
         self.next.append(next)
 
-    def nodeTree(self, prefix=''):
-        result = "%s%s\n" % (prefix, repr(self))
+    def nodeTree(self):
+        result = "%s%s\n" % (repr(self))
 
         for c in self.children:
             if not isinstance(c, Node):
-                result += "%s Error: Child of type %r: %r\n" % (
-                    prefix, type(c), c)
+                result += "Error: Child of type %r: %r\n" % (
+                    type(c), c)
                 # result += c + '\n'
                 continue
-            result += c.nodeTree(prefix)
+            result += c.nodeTree()
         return result
 
     def __str__(self):
         return self.nodeTree()
 
-    def __repr__(self):
-        return self.type
 
 
 class TokenNode(Node):
@@ -62,9 +60,6 @@ class TokenNode(Node):
     def __init__(self, tok):
         Node.__init__(self)
         self.tok = tok
-
-    def __repr__(self):
-        return repr(self.tok)
 
     def eval(self):
         if(isinstance(self.tok, str)):
@@ -84,8 +79,6 @@ class OpNode(Node):
         except AttributeError:
             self.nbargs = 1
 
-    def __repr__(self):
-        return "%s (%s)" % (self.op, self.nbargs)
 
     def eval(self):
         first = self.children[0].eval()

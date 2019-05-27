@@ -1,4 +1,4 @@
-// var a = 12;
+// var a = 25;
 
 // if (a % 2 == 0) {
 //     write(a + ' es par');
@@ -19,12 +19,12 @@
 // }
 
 
-// var op = true;
-// var num = 0;
-// while (op) {
-//     num--;
-//     write (num);
-//     if(num <= 0 - 100) {
-//         op = false;
-//     }
-// }
+var op = true;
+var num = 0;
+while (op) {
+    num--;
+    write (num);
+    if(num <= 0 - 100) {
+        op = false;
+    }
+}
