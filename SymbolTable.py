@@ -7,4 +7,6 @@ class SymbolTable:
         self.variables[name] = value
 
     def readVariable(self, name):
-        return self.variables[name]
+        if(name in self.variables): 
+            return self.variables[name]
+        raise Exception('The variable ' + name + ' must be initialized')

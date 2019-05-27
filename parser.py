@@ -107,7 +107,7 @@ def p_if(p):
                     | IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE command
                     | IF LPAREN relexprgroup RPAREN LBRACKET S RBRACKET ELSE LBRACKET S RBRACKET '''
     if(len(p) > 11):
-        p[0] = ast.IfNode([p[3], p[6],  ast.ElseNode([p[10]])])
+        p[0] = ast.IfNode([p[3], p[6], p[10]])
     elif(len(p) > 8):
         p[0] = ast.IfNode([p[3], p[6],  ast.IfNode([p[9]])])
     else:
