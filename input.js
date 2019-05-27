@@ -11,7 +11,4 @@
 //         write(i);
 //     }
 // }
-// TODO: funciones, arrays
 
-var a = 2;
-write(a);

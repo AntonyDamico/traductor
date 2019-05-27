@@ -88,8 +88,30 @@ class OpNode(Node):
         return "%s (%s)" % (self.op, self.nbargs)
    
     def eval(self):
+        first =  self.children[0].eval()
+        second = self.children[1].eval()
         if(self.op == '+'):
-            return self.children[0].eval() + self.children[1].eval()
+            return first + second 
+        if(self.op == '-'):
+            return first - second
+        if(self.op == '*'):
+            return first * second
+        if(self.op == '/'):
+            return first / second
+        if(self.op == '%'):
+            return first % second
+        if(self.op == '<'):
+            return first < second
+        if(self.op == '>'):
+            return first > second
+        if(self.op == '<='):
+            return first <= second
+        if(self.op == '>='):
+            return first >= second
+        if(self.op == '=='):
+            return first == second
+        
+
 
 
 def addToClass(cls):

@@ -78,7 +78,8 @@ def p_variables(p):
 # =================================
 
 def p_write(p):
-    'command : WRITE LPAREN expr RPAREN'
+    '''command : WRITE LPAREN expr RPAREN
+                | WRITE LPAREN relexpr RPAREN'''
     p[0] = ast.WriteNode(p[3])
 
 
