@@ -44,7 +44,8 @@ tokens = (
     'INCREMENT',
     'DECREMENT',
     'TRUE',
-    'FALSE'
+    'FALSE',
+    'PROMPT'
 ) + tuple(map(lambda s: s.upper(), reserved))
 
 

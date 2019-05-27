@@ -115,6 +115,12 @@ def p_if(p):
         p[0] = ast.IfNode([p[3], p[6]])
 
 
+# def p_prompt(p):
+#     ''' comand : VAR ID ASSIGN PROMPT LPAREN expr RPAREN 
+#                 | ID ASSIGN PROMPT LPAREN expr RPAREN'''
+#     p[0] = ast.PromptNode()
+
+
 # =================================
 # ||       expressions           ||
 # =================================
@@ -198,7 +204,7 @@ def p_rel_group(p):
 
 
 # =================================
-# ||         Commands            ||
+# ||           Main              ||
 # =================================
 
 def parse(filename):
@@ -207,7 +213,7 @@ def parse(filename):
     code = file.read()
     file.close()
     result = parser.parse(code)
-    print(result)
+    # print(result)
     result.eval_all()
     return result
 # print(result.nodeTree())

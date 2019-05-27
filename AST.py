@@ -21,8 +21,8 @@ class Node:
         self.next = []
 
     def eval_all(self):
-        print(self.__class__.__name__)
-        print(self.children)
+        # print(self.__class__.__name__)
+        # print(self.children)
         print('====================')
         if(len(self.children) < 2):
             self.eval()
@@ -148,6 +148,7 @@ class VarNode(Node):
 
     def eval(self):
         global table
+        # print(table)
         table.createVariable(self.children[0].eval(), self.children[1].eval())
 
 
@@ -162,6 +163,8 @@ class IfNode(Node):
     type = 'if'
 
     def eval(self):
+        # print(self.children)
+
         childrenCount = len(self.children)
         if(childrenCount == 2):
             if(self.children[0].eval()):

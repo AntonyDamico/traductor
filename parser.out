@@ -5,6 +5,7 @@ Unused terminals:
     RETURN
     COMMA
     FUNCTION
+    PROMPT
 
 Grammar
 
@@ -81,6 +82,7 @@ NOT                  : 38
 NUMBER               : 27
 OR                   : 40
 PLUS                 : 19
+PROMPT               : 
 RBRACKET             : 13 14 15 16 17 18 18
 RETURN               : 
 RPAREN               : 11 12 13 14 15 16 17 18
